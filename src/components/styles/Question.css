@@ -244,3 +244,13 @@ video {
     max-width: 1420px;
     padding: 0 50px;
 }
+
+
+/* Mobile view */
+@media (max-width: 480px) {
+section.question-section {
+    position: relative;
+    z-index: -1;
+}
+}
+
