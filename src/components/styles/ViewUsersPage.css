@@ -1,0 +1,424 @@
+.user-list-wrapper {
+  background-color: #fff;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 700px;
+  margin-top: 100px;
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 28px;
+  font-weight: 800;
+  color: #008080;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.user-table thead {
+  background-color: #008080;
+  color: white;
+}
+
+.user-table th,
+.user-table td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.user-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.user-table tbody tr:hover {
+  background-color: #eef3fa;
+}
+
+.action-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-icons button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+
+.submit-btn {
+  height: 40px !important;
+}
+
+button.editbtn {
+  color: #007bff;
+}
+
+button.deletebtn {
+  color: red;
+}
+
+
+.user-details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.heading-with-back {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.back-icon {
+  font-size: 18px;
+  cursor: pointer;
+  color: #333;
+}
+
+h2 {
+  margin: 0;
+  color: #333;
+}
+
+.add-user-btn:hover {
+  background-color: #008080;
+  color: #ffffff;
+}
+
+.user-details-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.user-details-table th,
+.user-details-table td {
+  text-align: left;
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.user-details-table th {
+  background-color: #f1f1f1;
+  color: #333;
+}
+
+.action-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.action-btn:hover {
+  background-color: #218838;
+}
+
+.pagination {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-top: 20px;
+  gap: 15px;
+}
+
+.pagination button {
+  background-color: #008080;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-size: 14px;
+  color: #555;
+}
+
+.user-details-center-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+
+
+.user-details-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 75px;
+}
+
+.user-details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.heading-with-back {
+  display: flex;
+  align-items: center;
+}
+
+.back-icon {
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.add-user-btn {
+  border: 2px solid #008080;
+  background: #ffffff;
+  color: #008080;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.user-details-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.user-details-table th,
+.user-details-table td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.action-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.heading-with-back h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.pagination {
+  text-align: center;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 5px 10px;
+}
+
+.action-icon {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  margin-right: 8px;
+  padding-bottom: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.action-icon.view {
+  color: #008080;
+  /* border-bottom: 2px solid #008080; */
+}
+
+.action-icon.delete {
+  color: red;
+  /* border-bottom: 2px solid red; */
+}
+
+.action-icon:hover {
+  opacity: 0.8;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-box {
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 10px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-box h3 {
+  margin-top: 0;
+  color: #008080;
+  margin-bottom: 15px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  /* margin-top: 20px; */
+}
+
+button.action-icon.edit {
+  color: #1b78ee;
+}
+
+.cancel-btn {
+  background-color: #ccc;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 40px !important;
+}
+
+.confirm-btn {
+  background-color: #008080;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  /* line-height: 0; */
+}
+
+.modal-box.wide {
+  width: 500px;
+  max-width: 95%;
+}
+
+.view-form-box {
+  width: 450px;
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.view-user-form .form-group {
+  margin-bottom: 15px;
+}
+
+.view-user-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.view-user-form input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 15px;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+p.delete-par {
+  text-align: left;
+  font-size: 15px;
+}
+
+@media (max-width: 480px) {
+
+  .main-content {
+    margin-left: 70px;
+    padding: 9px;
+  }
+
+  .user-details-container {
+    padding: 15px;
+    margin-top: 0px;
+  }
+
+  .add-user-btn {
+    padding: 5px 5px;
+    font-size: 12px;
+  }
+
+  .heading-with-back h2 {
+    font-size: 15px;
+  }
+
+  .user-details-table th {
+    padding: 2px;
+    font-size: 12px;
+  }
+
+  .action-icon {
+    font-size: 15px;
+    margin-right: 0;
+  }
+
+  .user-details-table td {
+    padding: 3px;
+    font-size: 12px;
+  }
+
+
+  .pagination button {
+    font-size: 12px;
+    margin: 0 5px;
+    padding: 4px 9px;
+  }
+
+  .pagination span {
+    font-size: 12px;
+  }
+
+  .pagination {
+    gap: 5px;
+  }
+
+}
