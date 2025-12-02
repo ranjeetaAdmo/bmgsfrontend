@@ -55,6 +55,16 @@ const Sidebar = ({ isCollapsed }) => {
           <FaQuestionCircle />
           {!isCollapsed && <span>Questions</span>}
         </li>
+
+        <li
+          className={`menu-link${isActive('/get-in-touch') ? ' active' : ''}`}
+          onClick={() => navigate('/get-in-touch')}
+          style={{ cursor: 'pointer' }}
+        >
+          <FaQuestionCircle />
+          {!isCollapsed && <span>Get in Touch</span>}
+        </li>
+
       </ul>
     </div>
   );

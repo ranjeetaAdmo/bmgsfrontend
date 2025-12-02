@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Modal, Button, Form } from 'react-bootstrap';
 import './styles/resourcepage.css';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const ResourcePage = () => {
   const [show, setShow] = useState(false);
@@ -12,7 +13,7 @@ const ResourcePage = () => {
   const navigate = useNavigate();
 
 const handleResouceClick = () => {
-    navigate('/question');
+    
 };
 
   const [formData, setFormData] = useState({
@@ -26,12 +27,37 @@ const handleResouceClick = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert("Form submitted successfully!");
-    setFormData({ name: '', email: '', phone: '', message: '' });
-    handleClose(); // Close the modal
+    try {
+      const res = await fetch('http://localhost:5000/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      const data = await res.json();
+      if (data.success) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: data.message,
+        });
+        setFormData({ name: '', email: '', phone: '', message: '' });
+        handleClose();
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: data.message || 'Failed to submit form',
+        });
+      }
+    } catch (err) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Server Error',
+        text: 'Please try again later.',
+      });
+    }
   };
 
   return (
