@@ -28,7 +28,7 @@ const AddQuestionPage = () => {
    useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await axios.get("http://148.230.92.191:5000/api/categories");
+        const res = await axios.get("http://localhost:5000/api/categories");
         setCategories(res.data); // assuming API returns an array
       } catch (err) {
         console.error("Error fetching categories:", err);
@@ -63,7 +63,7 @@ const AddQuestionPage = () => {
 
   try {
     // Send data to backend
-    const res = await axios.post("http://148.230.92.191:5000/api/addQuestions", finalData);
+    const res = await axios.post("http://localhost:5000/api/addQuestions", finalData);
 
     if (res.status === 200 || res.status === 201) {
        Swal.fire({
