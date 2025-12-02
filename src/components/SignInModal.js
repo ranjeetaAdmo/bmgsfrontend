@@ -10,30 +10,47 @@ const SignInModal = ({ onClose }) => {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   
+
+  const [showForgot, setShowForgot] = useState(false);
+  const [forgotEmail, setForgotEmail] = useState('');
+  const [forgotMsg, setForgotMsg] = useState('');
+
   const navigate = useNavigate();
   const { setUser } = useContext(AuthContext);
   
   const handleSignUpClick = async (e) => {
     e.preventDefault();
     try {
-    const res = await axios.post('http://148.230.92.191:5000/api/login',
-     {email,password},
-     { withCredentials: true }
-    );
-    setMessage("Login successful!");
-    setUser(res.data.user);
-    console.log(res.data.user.role);
-    if(res.data.user.role === 'admin') {
-      navigate('/dashboard');
-      return;
+    const res = await axios.post('http://localhost:5000/api/login',
+        { email, password },
+        { withCredentials: true }
+      );
+      setMessage("Login successful!");
+      setUser(res.data.user);
+      if (res.data.user.role === 'admin') {
+        navigate('/dashboard');
+        return;
+      }
+      if (res.data.user.role === 'user') {
+        navigate('/question');
+      }
+    } catch (err) {
+      setMessage(err.response?.data?.msg || 'Login failed');
     }
-    if(res.data.user.role === 'user'){
-       navigate('/question');
-    }
-  } catch (err) {
-    setMessage(err.response?.data?.msg || 'Login failed');
-  }
   
+};
+
+ const handleForgotSubmit = async (e) => {
+  e.preventDefault();
+  setForgotMsg("");
+  try {
+    const res = await axios.post("http://localhost:5000/api/forgetpassword", {
+      email: forgotEmail
+    });
+    setForgotMsg(res.data.message);
+  } catch (err) {
+     setForgotMsg(err.response?.data?.error || "Failed to send link");
+  }
 };
   return (
     <div className="modal-overlay" onClick={onClose}>
@@ -44,33 +61,56 @@ const SignInModal = ({ onClose }) => {
 
         <h2 className="modal-title">Sign in</h2>
          <form className="login-form" onSubmit={handleSignUpClick}>
-        <div className="form-group">
-          <label htmlFor="email">EMAIL</label>
-          <input  type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required />
-        </div>
+          <div className="form-group">
+            <label htmlFor="email">EMAIL</label>
+            <input type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required />
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="password">PASSWORD</label>
-          <input  type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required />
-        </div>
+          <div className="form-group">
+            <label htmlFor="password">PASSWORD</label>
+            <input type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required />
+          </div>
 
-        <button className="btn-signin">Sign in</button>
+         <button className="btn-signin">Sign in</button>
+          <div style={{ color: 'red', marginTop: '8px' }}>{message}</div>
         </form>
 
-        <p className="forgot-link">Forgot your password?</p>
+         <p className="forgot-link" style={{ cursor: 'pointer', color: '#007bff' }}
+          onClick={() => setShowForgot(true)}>
+          Forgot your password?
+        </p>
 
         <p className="terms">
           By clicking continue above, you acknowledge that you have read,
           understood and agree to our <span>Terms & Conditions.</span>
         </p>
+       
+        {showForgot && (
+          <div className="forgot-modal">
+            <h3>Forgot Password</h3>
+            <form onSubmit={handleForgotSubmit}>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={forgotEmail}
+                onChange={e => setForgotEmail(e.target.value)}
+                required
+              />
+              <button type="submit">Send Reset Link</button>
+            </form>
+            <div style={{ color: 'green', marginTop: '8px' }}>{forgotMsg}</div>
+            <button onClick={() => setShowForgot(false)} style={{ marginTop: '8px' }}>Close</button>
+          </div>
+        )}
+
       </div>
     </div>
   );
