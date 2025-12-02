@@ -145,3 +145,34 @@ button.closebutton {
     color: #ffffff;
     font-size: 15px;
 }
+@media (max-width: 480px) {
+.modal-title {
+    font-size: 21px !important;
+}
+.form-group input, .form-group select {
+    font-size: 12px  !important;
+}
+.form-group label {
+    font-size: 13px !important;
+}
+
+.btn-signin {
+    font-size: 14px;
+    margin-top: 5px;
+}
+.reset-btn {
+    font-size: 12px;
+    padding: 9px 7px;
+}
+.forgot-modal h3 {
+    font-size: 16px !important;
+}
+button.closebutton {
+    width: 90px;
+    height: 35px;
+    font-size: 14px;
+}
+.forgot-modal input {
+    width: 74%;
+    }
+}
