@@ -1,0 +1,222 @@
+h2.Learning-head {
+    color: #008080;
+    font-family: "Lato", sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    position: relative;
+    text-align: center;
+}
+
+
+.learning-box h5 {
+    font-size: 20px;
+    font-weight: 800;
+    font-family: "Lato", sans-serif;
+    color: #008080;
+    margin-bottom: 10px;
+}
+
+.learning-box p {
+    font-size: 15px;
+    font-weight: 600;
+    color: #000000;
+    font-family: "Lato", sans-serif;
+    margin-bottom: 10px !important;
+}
+
+.get-btn {
+    background: #008080;
+    border: 0;
+    width: 170px;
+    height: 55px;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 17px;
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+}
+
+div#Resourcepage .get-btn {
+    background: #008080 !important;
+    color: #ffffff !important;
+}
+
+.modal-dialog.modal-dialog-centered {
+    max-width: 700px !important;
+}
+
+.modal-title {
+    font-size: 28px;
+    font-family: "Lato", sans-serif;
+    font-weight: 800;
+}
+
+.modal-header .btn-close {
+    font-size: 20px;
+}
+
+.modal-body label.form-label {
+    font-size: 21px;
+    font-weight: 600;
+    color: #000000;
+    font-family: "Lato", sans-serif;
+}
+
+.modal-body input {
+    padding: 12px !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+}
+
+.modal-btn {
+    background: #009688;
+    border: 0;
+    height: 50px;
+    font-size: 21px;
+    font-family: "Lato", sans-serif;
+    font-weight: 600;
+}
+
+.modal-btn:hover {
+    background: #008080 !important;
+    color: #ffffff !important;
+}
+
+div#Resourcepage .container {
+    max-width: 1420px;
+    padding: 0px 50px;
+}
+
+
+h2.Learning-head:before {
+    position: absolute;
+    content: '';
+    width: 184px;
+    background: #008080;
+    bottom: -12px;
+    left: 44%;
+    height: 4px;
+}
+
+.learntext {
+    margin-top: 27px !important;
+}
+
+@media (max-width: 480px) {
+    div#Resourcepage .container {
+        max-width: 1420px;
+        padding: 20px 12px !important;
+    }
+
+    h2.Learning-head:before {
+        width: 150px;
+        left: 25%;
+    }
+
+    h2.Learning-head {
+        font-size: 23px;
+    }
+
+    div#Resourcepage .p-4 {
+        padding: 15px !important;
+    }
+
+    div#Resourcepage .col-md-6 {
+        margin-top: 10px !important;
+    }
+
+    .learning-box h5 {
+        font-size: 17px;
+    }
+
+    .learning-box p {
+        font-size: 13px;
+    }
+
+    .resource-btn {
+        margin-top: 20px !important;
+    }
+
+    .get-btn {
+        width: 150px;
+        height: 50px;
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    div#Resourcepage .container {
+        padding: 0px 15px !important;
+    }
+
+    h2.Learning-head {
+        font-size: 24px;
+    }
+
+    h2.Learning-head:before {
+        width: 150px;
+        left: 35%;
+    }
+
+    div#Resourcepage .col-md-6 {
+        margin-top: 10px !important;
+    }
+
+    .learning-box h5 {
+        font-size: 18px;
+    }
+
+    .learning-box p {
+        font-size: 14px;
+    }
+
+    .resource-btn {
+        margin-top: 30px !important;
+    }
+
+    .get-btn {
+        width: 150px;
+        height: 49px;
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    div#Resourcepage .container {
+        padding-top: 30px !important;
+    }
+
+    h2.Learning-head {
+        font-size: 26px;
+    }
+
+    h2.Learning-head:before {
+        width: 150px;
+        left: 39%;
+    }
+
+    .learntext {
+        margin-bottom: 0 !important;
+    }
+
+    .learning-box h5 {
+        font-size: 18px;
+    }
+
+    .learning-box p {
+        font-size: 14px;
+    }
+
+    .resource-btn {
+        margin-top: 30px !important;
+    }
+
+    .get-btn {
+        width: 150px;
+        height: 50px;
+        font-size: 15px;
+    }
+
+}
+

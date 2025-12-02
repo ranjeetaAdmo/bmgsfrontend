@@ -1,0 +1,197 @@
+.service-heading {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.service-card {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  text-align: center;
+  height: 270px;
+  transition: transform 0.3s ease;
+  border: 1px solid #eee;
+}
+
+.service-card:hover {
+  transform: translateY(0px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+}
+
+.service-heading:before {
+  position: absolute;
+  content: '';
+  width: 118px;
+  background: #008080;
+  bottom: -10px;
+  left: 45%;
+  height: 4px;
+}
+
+.service-icon-box {
+  font-size: 40px;
+  color: #008080;
+  margin-bottom: 20px;
+}
+
+.service-title {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 15px;
+  font-family: "Lato", sans-serif;
+  color: #008080;
+}
+
+.service-description {
+  font-size: 16px;
+  color: #000000;
+  font-weight: 500;
+  font-family: "Lato", sans-serif;
+  line-height: 26px;
+}
+
+.swiper-custom-button-prev,
+.swiper-custom-button-next {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  width: 35px;
+  height: 35px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 30px;
+  color: #008080;
+  transition: all 0.3s ease;
+}
+
+.swiper-custom-button-prev:hover,
+.swiper-custom-button-next:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.swiper-custom-button-prev {
+  left: 9px;
+}
+
+.swiper-custom-button-next {
+  right: 9px;
+}
+
+/* Pagination Dots */
+.swiper-pagination-custom .swiper-pagination-bullet {
+  background-color: #aaa;
+  width: 10px;
+  height: 10px;
+  margin: 0 6px;
+  border-radius: 50%;
+  opacity: 1;
+  transition: background-color 0.3s;
+}
+
+.swiper-pagination-custom .swiper-pagination-bullet-active {
+  background-color: #008080;
+}
+
+.service-heading {
+  color: #008080;
+  font-family: "Lato", sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  position: relative;
+}
+
+.services-page-section .container {
+  max-width: 1420px;
+  padding: 0px 50px;
+}
+
+@media (max-width: 480px) {
+  .services-page-section .container {
+    padding: 0px 12px;
+  }
+
+  .service-heading {
+    font-size: 25px;
+  }
+
+  .service-heading:before {
+    width: 100px;
+    bottom: -11px;
+    left: 33%;
+  }
+
+  .service-heading {
+    margin-bottom: 35px !important;
+  }
+
+  .swiper-custom-button-prev {
+    display: none;
+  }
+
+  .swiper-custom-button-prev,
+  .swiper-custom-button-next {
+    width: 30px;
+    height: 30px;
+    font-size: 25px;
+  }
+
+  .swiper-custom-button-next {
+    display: none;
+  }
+
+  .service-icon-box {
+    font-size: 28px;
+    color: #008080;
+    margin-bottom: 15px;
+  }
+
+  .service-title {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+
+  .service-description {
+    font-size: 15px;
+    line-height: 26px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .service-heading {
+    font-size: 24px;
+  }
+
+  .service-heading:before {
+
+    width: 90px;
+    left: 44%;
+  }
+
+  .service-icon-box {
+    font-size: 35px;
+  }
+
+  .service-title {
+    font-size: 18px;
+  }
+
+  .service-description {
+    font-size: 15px;
+    line-height: 22px;
+    margin-bottom: 0 !important;
+  }
+
+  .service-card {
+    padding: 15px;
+    height: 250px;
+  }
+
+}
+

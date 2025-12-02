@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-box {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  width: 420px;
+  position: relative;
+  font-family: sans-serif;
+}
+
+.close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #B3B3B3;
+}
+
+.modal-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+
+.form-group label {
+    display: block;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16.5px;
+    letter-spacing: 0.96px;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    height: 33.73px;
+        border: 0;
+    font-size: 14px;
+    background: #f5f5f5;
+}
+
+
+.btn-signup {
+    color: white;
+    width: 100%;
+    background: #008080;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+        font-family: "Inter", sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 12px;
+}
+.switch-link {
+    text-align: center;
+    margin-top: 14px;
+    color: #000000;
+    font-size: 15px;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+    border: 1px solid #008080;
+    padding: 9px;
+    border-radius: 8px;
+}
+.terms {
+    font-size: 12px;
+    text-align: center;
+    margin-top: 0;
+    color: #666666;
+       font-family: "Inter", sans-serif;
+    line-height: 18px;
+}
+
+.terms span {
+  cursor: pointer;
+}
