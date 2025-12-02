@@ -10,14 +10,14 @@ const Contact = () => (
           <div className="icon email" />
           <div>
             {/* <h4>Email</h4> */}
-            <p>info@gmail.com</p>
+            <p>info@bmgsadvisory.com</p>
           </div>
         </div>
          <div className="contact-detail">
           <div className="icon web" />
           <div>
             {/* <h4>Website</h4> */}
-            <p>beyondlean.com</p>
+            <p>LeanIntoAction.com</p>
           </div>
         </div>
       </div>
@@ -27,7 +27,15 @@ const Contact = () => (
             <div className='icon youtube'></div>
       </div>
        <p className="footer-text">
-      ©<span className="highlight"> BeyondLean.com</span>. All rights reserved.
+    © <span className="highlight">
+  <a 
+    href="http://leanintoaction.com/" 
+    target="_blank" 
+    style={{ color: "inherit", textDecoration: "none" }}
+  >
+    LeanIntoAction.com
+  </a>
+</span>. All rights reserved.
     </p>
 {/* 
       <div className="contact-form-box">
