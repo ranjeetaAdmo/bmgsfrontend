@@ -20,6 +20,7 @@ import QuestionPage from './components/QuestionPage';
 import AddQuestionPage from './components/AddQuestionPage'
 import EditQuestionPage from './components/EditQuestionPage';
 import ViewQuestionPage from './components/ViewQuestionPage';
+import ResetPassword from './components/ResetPassword';
 function Home({ onOpenAuthModal, onOpenSignIn }) {
   return (
     <>
@@ -91,6 +92,9 @@ function App() {
            <Route path="/add-question" element={<AddQuestionPage />} />
           <Route path="/edit-question/:index" element={<EditQuestionPage />} />
           <Route path="/view-question/:index" element={<ViewQuestionPage />} />
+           <Route path="/view-question/:index" element={<ViewQuestionPage />} />
+          <Route path="/reset-password" element={<ResetPassword />} /> {/* <-- Add this line */}
+
         </Routes>
       </>
     </Router>
