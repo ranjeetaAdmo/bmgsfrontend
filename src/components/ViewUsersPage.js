@@ -32,7 +32,7 @@ const ViewUsersPage = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await axios.get("http://148.230.92.191:5000/api/users", {
+        const res = await axios.get("http://localhost:5000/api/users", {
           withCredentials: true
         });
         setUsers(res.data);
@@ -213,7 +213,7 @@ const ViewUsersPage = () => {
                 onClick={async () => {
                   try {
                     const res = await axios.post(
-                      "http://148.230.92.191:5000/api/deleteUser",
+                      "http://localhost:5000/api/deleteUser",
                       { id: userToDelete.id }   // send id in body
                     );
 
@@ -285,7 +285,7 @@ const ViewUsersPage = () => {
                     e.preventDefault();
                     try {
                       const res = await axios.post(
-                        "http://148.230.92.191:5000/api/editUser",
+                        "http://localhost:5000/api/editUser",
                         {
                           id: userToEdit.id,
                           fullname: userToEdit.fullname,

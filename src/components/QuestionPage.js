@@ -30,7 +30,7 @@ const QuestionPage = () => {
   useEffect(() => {
   const fetchQuestions = async () => {
     try {
-      const res = await axios.get("http://148.230.92.191:5000/api/getQuestions", {
+      const res = await axios.get("http://localhost:5000/api/getQuestions", {
         withCredentials: true,
       });
 
@@ -68,7 +68,7 @@ const QuestionPage = () => {
   if (!selectedQuestionId) return;
 
   try {
-    await axios.post("http://148.230.92.191:5000/api/deletequestion", 
+    await axios.post("http://localhost:5000/api/deletequestion", 
       { id: selectedQuestionId }, 
       { withCredentials: true }
     );

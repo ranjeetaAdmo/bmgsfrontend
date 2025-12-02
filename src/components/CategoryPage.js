@@ -55,7 +55,7 @@ const CategoryPage = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await axios.get("http://148.230.92.191:5000/api/categories", {
+        const res = await axios.get("http://localhost:5000/api/categories", {
           withCredentials: true,
         });
 
@@ -107,7 +107,7 @@ const CategoryPage = () => {
 
     try {
       const res = await axios.post(
-        "http://148.230.92.191:5000/api/saveCategory",
+        "http://localhost:5000/api/saveCategory",
         { category_name: newCategory.trim() },
         { withCredentials: true }
       );
@@ -146,7 +146,7 @@ const CategoryPage = () => {
 
     try {
       const res = await axios.post(
-        "http://148.230.92.191:5000/api/editCategory",
+        "http://localhost:5000/api/editCategory",
         { id: category.id, category_name: editName.trim() },
         { withCredentials: true }
       );
@@ -176,7 +176,7 @@ const CategoryPage = () => {
 
     try {
       const res = await axios.post(
-        "http://148.230.92.191:5000/api/deleteCategory",
+        "http://localhost:5000/api/deleteCategory",
         { id: category.id },
         { withCredentials: true }
       );

@@ -27,7 +27,7 @@ const AddUserPage = () => {
 
     try {
       const res = await axios.post(
-        "http://148.230.92.191:5000/api/register",
+        "http://localhost:5000/api/register",
         { fullname, email, password },
         { withCredentials: true }
       );
