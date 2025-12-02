@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import './styles/reset.css';
 
 function ResetPassword() {
   const [email, setEmail] = useState("");
@@ -26,6 +27,7 @@ function ResetPassword() {
   };
 
   return (
+    <div className="reset-password">
     <form onSubmit={handleSubmit}>
       <h2>Reset Password</h2>
 
@@ -40,6 +42,7 @@ function ResetPassword() {
       <button type="submit">Reset</button>
       <p>{msg}</p>
     </form>
+    </div>
   );
 }
 

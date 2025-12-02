@@ -46,6 +46,7 @@ const Question = () => {
   return (
     <>
       <Header />
+      <section className='question-section'>
       <div className="container-fluid  min-vh-100 d-flex justify-content-center align-items-start py-5 question-block">
         <div className="step-wrapper w-100">
 
@@ -211,6 +212,7 @@ const Question = () => {
 
         </div>
       </div>
+      </section>
       <Footer />
     </>
   );

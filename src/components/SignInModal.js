@@ -83,7 +83,7 @@ const SignInModal = ({ onClose }) => {
           <div style={{ color: 'red', marginTop: '8px' }}>{message}</div>
         </form>
 
-         <p className="forgot-link" style={{ cursor: 'pointer', color: '#007bff' }}
+         <p className="forgot-link" style={{ cursor: 'pointer' }}
           onClick={() => setShowForgot(true)}>
           Forgot your password?
         </p>
@@ -104,10 +104,10 @@ const SignInModal = ({ onClose }) => {
                 onChange={e => setForgotEmail(e.target.value)}
                 required
               />
-              <button type="submit">Send Reset Link</button>
+              <button type="submit" className='reset-btn'>Send Reset Link</button>
             </form>
             <div style={{ color: 'green', marginTop: '8px' }}>{forgotMsg}</div>
-            <button onClick={() => setShowForgot(false)} style={{ marginTop: '8px' }}>Close</button>
+            <button onClick={() => setShowForgot(false)} style={{ marginTop: '8px' }} className='closebutton'>Close</button>
           </div>
         )}
 
