@@ -1,0 +1,133 @@
+.question-page .table th,
+.question-page .table td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.question-page .btn-sm {
+  min-width: 60px;
+}
+
+.addquestion {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 75px;
+}
+.addbtn {
+    background: transparent;
+    border: 0;
+    color: #000000;
+    padding: 0;
+    font-size: 17px;
+}
+h3.addheading {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: #000000;
+    line-height: 0;
+}
+
+.modal-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+.addbottom:hover{
+    color: #008080;
+    border: 2px solid #008080  !important;
+}
+.addbottom {
+    background-color: #008080;
+    color: white;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 4px;
+}
+.addtop {
+    gap: 10px;
+}
+label.form-label {
+    display: block;
+    margin-bottom: 10px;
+    color: #000000;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0;
+}
+
+button.addsubmit {
+    background-color: #008080;
+    color: white;
+    border: 2px solid #008080;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 6px 14px;
+    height: 37px;
+    float: inline-end;
+}
+
+button.addsubmit:hover {
+    color: #002020;
+    border: 2px solid #008080;
+}
+
+.question-page {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 75px;
+}
+
+h3.Questionheading {
+    font-size: 22px;
+    font-weight: 700;
+    color: #000000;
+}
+
+.question-page .table th {
+    background-color: #f1f1f1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+    color: #333;
+}
+
+.addbtn:hover {
+    color: #000000;
+}
+.modal-content {
+    background-color: white;
+    padding: 22px;
+    border-radius: 8px;
+    width: 400px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+.modal-header {
+    padding: 0;
+    border: 0;
+}
+.modal-title.h4 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #000000;
+}
+.modal-body {
+    padding: 17px 0;
+    text-align: left;
+}

@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+body {
+    background: #F7F7F5 !important;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 5%;
+  /* background-color: #F7F7F5; */
+  /* box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); */
+  border-bottom: 2px solid #B3B3B3;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: teal;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+.nav-links li a {
+    text-decoration: none;
+    transition: color 0.3s;
+    color: #000000;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 700;
+    position: relative;
+    font-family: "Lato", sans-serif;
+}
+
+.nav-links li a:hover {
+  color: #000000;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 10px;
+}
+.btn-outline {
+    background: transparent;
+    padding: 8px 20px;
+    color: #000000;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: #008080;
+    border-width: 2px;
+    width: 100px;
+    height: 40px;
+    position: relative;
+    line-height: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: "Lato", sans-serif;
+}
+.btn-filled {
+    color: white;
+    transition: background 0.3s ease;
+    background: #008080;
+    border-radius: 6px;
+    width: 101px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: "Lato", sans-serif;
+    line-height: 16px;
+}

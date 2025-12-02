@@ -1,0 +1,96 @@
+h2.Learning-head {
+    color: #008080;
+    font-family: "Lato", sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    position: relative;
+    text-align: center;
+}
+
+
+.learning-box h5 {
+    font-size: 20px;
+    font-weight: 800;
+    font-family: "Lato", sans-serif;
+    color: #008080;
+    margin-bottom: 10px;
+}
+
+.learning-box p {
+    font-size: 15px;
+    font-weight: 600;
+    color: #000000;
+    font-family: "Lato", sans-serif;
+    margin-bottom: 10px !important;
+}
+.get-btn {
+    background: #008080;
+    border: 0;
+    width: 170px;
+    height: 55px;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 17px;
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+}
+div#Resourcepage .get-btn {
+    background: #008080 !important;
+    color: #ffffff !important;
+}
+
+.modal-dialog.modal-dialog-centered {
+    max-width: 700px !important;
+}
+.modal-title {
+    font-size: 28px;
+    font-family: "Lato", sans-serif;
+    font-weight: 800;
+}
+.modal-header .btn-close {
+    font-size: 20px;
+}
+.modal-body label.form-label {
+    font-size: 21px;
+    font-weight: 600;
+    color: #000000;
+    font-family: "Lato", sans-serif;
+}
+.modal-body input {
+    padding: 12px !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+}
+
+.modal-btn {
+    background: #009688;
+    border: 0;
+    height: 50px;
+    font-size: 21px;
+    font-family: "Lato", sans-serif;
+    font-weight: 600;
+}
+.modal-btn:hover{
+      background: #008080 !important;
+    color: #ffffff !important;
+} 
+
+div#Resourcepage .container {
+    max-width: 1420px;
+        padding: 0px 50px;
+}
+
+
+h2.Learning-head:before {
+    position: absolute;
+    content: '';
+    width: 184px;
+    background: #008080;
+    bottom: -12px;
+    left: 44%;
+    height: 4px;
+}
+
+.learntext {
+    margin-top: 27px !important;
+}

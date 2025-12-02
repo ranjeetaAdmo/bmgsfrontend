@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+.lean-intro-section ul {
+    padding-left: 20px;
+    list-style: none;
+}
+
+.lean-intro-section li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+    font-size: 18px;
+    font-weight: 500;
+    color: #000000;
+    font-family: "Lato", sans-serif;
+}
+.accordion-button:not(.collapsed) {
+  background-color: #0d6efd;
+  color: #fff;
+}
+
+h2.learnhead {
+    color: #008080;
+    font-family: "Lato", sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    position: relative;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+h4.learntext {
+    font-size: 20px;
+    font-weight: 700;
+    font-family: "Lato", sans-serif;
+    color: #088080;
+}
+
+p.learnbody {
+    font-size: 20px;
+    font-weight: 500;
+    color: #000000;
+    font-family: "Lato", sans-serif;
+    margin-top: 14px;
+}
+
+
+.learn-body p {
+    font-size: 18px;
+    font-weight: 500;
+    color: #000000;
+    font-family: "Lato", sans-serif;
+    margin-top: 14px;
+    margin-left: 24px;
+}
+
+section.lean-intro-section .container {
+    max-width: 1420px !important;
+        padding: 0px 50px;
+}
+
+h2.learnhead:after {
+    position: absolute;
+    content: '';
+    width: 235px;
+    background: #008080;
+    bottom: -16px;
+    left: 41%;
+    height: 4px;
+}
