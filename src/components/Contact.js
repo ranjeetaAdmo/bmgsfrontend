@@ -37,21 +37,7 @@ const Contact = () => (
   </a>
 </span>. All rights reserved.
     </p>
-{/* 
-      <div className="contact-form-box">
-        <h2>Get in Touch</h2>
-        <form className="contact-form">
-          <label>Name</label>
-          <input type="text" placeholder="Your Name" />
-          <label>Email</label>
-          <input type="email" placeholder="Your Email Address" />
-          <label>Phone Number</label>
-          <input type="tel" placeholder="Your Phone number" />
-          <label>Message</label>
-          <textarea placeholder="Your Message" rows="5"></textarea>
-          <button type="submit">Submit</button>
-        </form>
-      </div> */}
+
     </div>
     </div>
   </section>
