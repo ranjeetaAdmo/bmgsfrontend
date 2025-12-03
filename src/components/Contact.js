@@ -17,7 +17,7 @@ const Contact = () => (
           <div className="icon web" />
           <div>
             {/* <h4>Website</h4> */}
-            <p>LeanintoAction.com</p>
+            <p>LeanigntoAction.com</p>
           </div>
         </div>
       </div>
