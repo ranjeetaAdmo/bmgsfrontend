@@ -4,6 +4,10 @@
 /node_modules
 /.pnp
 .pnp.js
+*.mp4
+*.mov
+public/assets/0_Student_Girl_3840x2160.mp4
+public/assets/0_Student_Girl_3840x2160.mov
 
 # testing
 /coverage
