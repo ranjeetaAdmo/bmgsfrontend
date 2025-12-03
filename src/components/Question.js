@@ -58,7 +58,7 @@ const Question = () => {
   // import axios from 'axios';
 
   // Replace with your actual user ID (from context, props, etc.)
-  const user_id = 13; // Example: get from AuthContext or props
+  const user_id = 15; // Example: get from AuthContext or props
 
   const handleSubmitResponses = async () => {
     // Prepare responses array
@@ -195,28 +195,42 @@ const Question = () => {
               <>
                 <div className="final-step">
                   <h3>
-                    <span style={{ cursor: 'pointer', userSelect: 'none' }}><FontAwesomeIcon icon={faChevronLeft} /></span> Lean Manufacturing - Principles and Implementation
+                    <h3>
+                      <span style={{ cursor: 'pointer', userSelect: 'none' }} onClick={goToPreviousStep} >
+                        <FontAwesomeIcon icon={faChevronLeft} />
+                      </span>{" "}
+                      Lean Manufacturing - Principles and Implementation
+                    </h3>
                   </h3>
 
-                  <video width="100%" controls style={{ marginTop: '20px' }}>
-                    <source src="mov_bbb.mp4" type="video/mp4" />
-                    <source src="mov_bbb.ogg" type="video/ogg" />
+                  <video width="100%" controls style={{
+                    width: "100%",
+                    height: "500px",
+                    objectFit: "cover",
+                    marginTop: "20px"
+                  }}>
+                    <source src="/assets/0_Student_Girl_3840x2160.mp4" type="video/mp4" />
                     Your browser does not support HTML video.
                   </video>
 
                   <p className="mt-4 text-start video-text">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry...
+                    BGMS is designed to simplify and organize school and student management
+                    by bringing everything into one seamless digital system. From attendance
+                    tracking to student performance, the platform helps institutions operate
+                    faster, smarter, and more efficiently.Whether you're an admin, teacher, or student, BGMS ensures easy access,
+                    better communication, and a smooth user experience anytime and anywhere.
+                    The future of smart school management begins here.
+
                   </p>
                   <p className="mt-4 text-start video-text">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry...
+                    The platform supports features like attendance tracking, fee management,
+                    digital assignments, communication tools, report generation, and
+                    much more—all in one place. With an intuitive and user-friendly UI,
+                    BGMS makes daily operations faster, more organized, and stress-free
+                    for teachers, students, and administrators.
                   </p>
                 </div>
-
-                <button
-                  type="button"
-                  className="get-started-button mt-4"
-                  onClick={handleSubmitResponses}
-                >
+                <button type="button" className="get-started-button mt-4" onClick={handleSubmitResponses}>
                   Submit Responses
                 </button>
               </>
