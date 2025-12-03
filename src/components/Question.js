@@ -4,7 +4,7 @@ import Footer from './Footer';
 import './styles/Question.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-
+import Swal from 'sweetalert2'; 
 const Question = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [categories, setCategories] = useState([]);
@@ -13,19 +13,44 @@ const Question = () => {
   const [selectedOptions, setSelectedOptions] = useState({});
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/categories')
+    fetch("http://localhost:5000/api/categories", {
+      method: "GET",
+      credentials: "include",
+    })
       .then(res => res.json())
-      .then(data => setCategories(data))
-      .catch(err => console.error('Failed to fetch categories:', err));
+      .then(data => {
+        console.log("RAW CATEGORY API RESPONSE:", data);
+
+        // ---- FIX: Always convert response into array ----
+        if (Array.isArray(data)) {
+          setCategories(data);
+        }
+        else if (data && Array.isArray(data.data)) {
+          setCategories(data.data);
+        }
+        else {
+          console.error("Invalid categories response format:", data);
+          setCategories([]); // Avoid crash
+        }
+      })
+      .catch(err => {
+        console.error("Failed to fetch categories:", err);
+        setCategories([]);
+      });
   }, []);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/getQuestions')
+    fetch('http://localhost:5000/api/getQuestions', {
+      method: "GET",
+      credentials: "include",   // <-- REQUIRED to send cookies
+    })
       .then(res => res.json())
-      .then(data => setAllQuestions(data))
+      .then(data => {
+        console.log("API Question Data:", data);
+        setAllQuestions(Array.isArray(data) ? data : data.data || []);
+      })
       .catch(err => console.error('Failed to fetch questions:', err));
   }, []);
-
   const steps = [
     { num: 1, label: 'About You', active: stepIndex === 1 },
     { num: 2, label: 'Learning Goal', active: stepIndex === 2 },
@@ -33,8 +58,9 @@ const Question = () => {
     { num: 4, label: 'Learning Style', active: stepIndex === 4 },
   ];
 
-  const questions = allQuestions.filter(q => q.category_name === selectedCategory);
-
+  const questions = Array.isArray(allQuestions)
+    ? allQuestions.filter(q => q.category_name === selectedCategory)
+    : [];
   const handleCategoryChange = (e) => {
     setSelectedCategory(e.target.id);
   };
@@ -54,11 +80,6 @@ const Question = () => {
     setStepIndex(prev => Math.max(prev - 1, 0));
   };
 
-  // Add this import if you use axios
-  // import axios from 'axios';
-
-  // Replace with your actual user ID (from context, props, etc.)
-  const user_id = 13; // Example: get from AuthContext or props
 
   const handleSubmitResponses = async () => {
     // Prepare responses array
@@ -71,17 +92,33 @@ const Question = () => {
       const res = await fetch('http://localhost:5000/api/saveResponse', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ user_id, responses })
+        body: JSON.stringify({ responses }),
+        credentials: 'include',
       });
       const data = await res.json();
       if (data.success) {
-        alert('Responses saved successfully!');
+         Swal.fire({
+          icon: 'success',
+          title: 'Success!',
+          text: 'Responses saved successfully!',
+          confirmButtonColor: '#3085d6',
+        });
         // Optionally, redirect or show a success message
       } else {
-        alert(data.message || 'Failed to save responses');
+              Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: data.message || 'Failed to save responses',
+          confirmButtonColor: '#d33',
+        });
       }
     } catch (err) {
-      alert('Server error. Please try again later.');
+      Swal.fire({
+        icon: 'error',
+        title: 'Server Error',
+        text: 'Please try again later.',
+        confirmButtonColor: '#d33',
+      });
     }
   };
 
@@ -195,30 +232,53 @@ const Question = () => {
               <>
                 <div className="final-step">
                   <h3>
-                    <span style={{ cursor: 'pointer', userSelect: 'none' }}><FontAwesomeIcon icon={faChevronLeft} /></span> Lean Manufacturing - Principles and Implementation
+                    <span style={{ cursor: 'pointer', userSelect: 'none' }} onClick={goToPreviousStep} >
+                      <FontAwesomeIcon icon={faChevronLeft} />
+                    </span>{" "}
+                    Lean Manufacturing - Principles and Implementation
                   </h3>
 
-                  <video width="100%" controls style={{ marginTop: '20px' }}>
-                    <source src="mov_bbb.mp4" type="video/mp4" />
-                    <source src="mov_bbb.ogg" type="video/ogg" />
+                  <video width="100%" controls style={{
+                    width: "100%",
+                    height: "500px",
+                    objectFit: "cover",
+                    marginTop: "20px"
+                  }}>
+                    {/* <source src="/assets/video.mp4" type="video/mp4" /> */}
                     Your browser does not support HTML video.
                   </video>
 
                   <p className="mt-4 text-start video-text">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry...
+                    BGMS is designed to simplify and organize school and student management
+                    by bringing everything into one seamless digital system. From attendance
+                    tracking to student performance, the platform helps institutions operate
+                    faster, smarter, and more efficiently.Whether you're an admin, teacher, or student, BGMS ensures easy access,
+                    better communication, and a smooth user experience anytime and anywhere.
+                    The future of smart school management begins here.
+
                   </p>
                   <p className="mt-4 text-start video-text">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry...
+                    The platform supports features like attendance tracking, fee management,
+                    digital assignments, communication tools, report generation, and
+                    much more—all in one place. With an intuitive and user-friendly UI,
+                    BGMS makes daily operations faster, more organized, and stress-free
+                    for teachers, students, and administrators.
                   </p>
                 </div>
-
-                <button
-                  type="button"
-                  className="get-started-button mt-4"
-                  onClick={handleSubmitResponses}
-                >
-                  Submit Responses
-                </button>
+                <div className="Started-button my-4">
+                  <button
+                    type="button"
+                    className="get-started-button mt-4"
+                    onClick={handleSubmitResponses}
+                  >
+                    Submit Responses
+                  </button>
+                  <a href="https://www.udemy.com/?deal_code=UDEAFNULP0324&utm_term=Homepage&utm_content=Textlink&utm_campaign=NewUserLP0324&utm_source=aff-campaign&utm_medium=udemyads&LSNPUBID=znpz0s2okgU&ranMID=47901&ranEAID=znpz0s2okgU&ranSiteID=znpz0s2okgU-XUTy3qk39nuPg.jt5BDggA&gad_source=1&gad_campaignid=22498850779&gbraid=0AAAAApkvLA7sfwOp_ixIM00NTL66aqfT_&gclid=Cj0KCQjwotDBBhCQARIsAG5pinOlM7T_A1W787l3j0CP50k_Vkx5l8ilDeoRqOFrP6EHArbeIMTWQvwaAhvFEALw_wcB"
+                    target="_blank">
+                    <button type="button" class="get-started-button mt-4">Get Started
+                    </button>
+                  </a>
+                </div>
               </>
             )}
 

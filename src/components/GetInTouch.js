@@ -22,7 +22,9 @@ const GetInTouch = () => {
   useEffect(() => {
     const fetchContacts = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/contacts");
+        const res = await axios.get("http://localhost:5000/api/contacts", {
+          withCredentials: true,
+        });
         setContacts(res.data);
       } catch (err) {
         console.error("Error fetching contacts:", err);

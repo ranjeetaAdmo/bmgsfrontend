@@ -10,8 +10,16 @@ const Footer = () => (
 
     {/* <div className="footer-divider"></div> */}
 
-    <p className="footer-text">
-      ©<span className="highlight"> BeyondLean.com</span>. All rights reserved.
+   <p className="footer-text">
+    © <span className="highlight">
+  <a 
+    href="http://leanintoaction.com/" 
+    target="_blank" 
+    style={{ color: "inherit", textDecoration: "none" }}
+  >
+    LeanintoAction.com
+  </a>
+</span>. All rights reserved.
     </p>
   </footer>
 );
