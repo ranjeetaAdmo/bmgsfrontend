@@ -17,7 +17,7 @@ const Footer = () => (
     target="_blank" 
     style={{ color: "inherit", textDecoration: "none" }}
   >
-    LeanIntoAction.com
+    LeanintoAction.com
   </a>
 </span>. All rights reserved.
     </p>
