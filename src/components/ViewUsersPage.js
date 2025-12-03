@@ -24,16 +24,19 @@ const ViewUsersPage = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [userToEdit, setUserToEdit] = useState(null);
 
+  const [showResponseModal, setShowResponseModal] = useState(false);
+  const [responseData, setResponseData] = useState(null);
+  const [loadingResponse, setLoadingResponse] = useState(false);
+
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const toggleSidebar = () => {
-    setIsCollapsed(prev => !prev);
-  };
-  //  fetchUsers runs only once
+  const toggleSidebar = () => setIsCollapsed(prev => !prev);
+
+  // fetch users
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const res = await axios.get("http://localhost:5000/api/users", {
-          withCredentials: true
+          withCredentials: true,
         });
         setUsers(res.data);
         console.log("Fetched users:", res.data);
@@ -43,7 +46,6 @@ const ViewUsersPage = () => {
         setLoadingUsers(false);
       }
     };
-
     fetchUsers();
   }, []);
 
@@ -69,21 +71,38 @@ const ViewUsersPage = () => {
     setShowEditModal(true);
   };
 
+  // fetch user response
+  const handleViewResponse = async (userId) => {
+    try {
+      setLoadingResponse(true);
+      const res = await axios.get(`http://localhost:5000/api/userResponses/${userId}`);
+      setResponseData(res.data.data);
+      setShowResponseModal(true);
+    } catch (err) {
+      console.error("Error fetching response:", err);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Failed to load user response.",
+      });
+    } finally {
+      setLoadingResponse(false);
+    }
+  };
+
   return (
     <div className="dashboard-container">
       <Sidebar isCollapsed={isCollapsed} />
+
       <div className="dashboard-body">
         <Header toggleSidebar={toggleSidebar} />
+
         <div className="main-content">
           <div className="user-details-container">
             <div className="user-details-header">
-              <div className="heading-with-back">
-                <h2>User Details</h2>
-              </div>
-              <button
-                className="add-user-btn"
-                onClick={() => navigate("/AddUserPage")}
-              >
+              <h2>User Details</h2>
+
+              <button className="add-user-btn" onClick={() => navigate("/AddUserPage")}>
                 <FaPlus /> Add User
               </button>
             </div>
@@ -92,47 +111,47 @@ const ViewUsersPage = () => {
               <p>Loading users...</p>
             ) : (
               <div className="table-responsive">
-              <table className="user-details-table">
-                <thead>
-                  <tr>
-                    <th>Full Name</th>
-                    <th>Email</th>
-                    <th>Registered At</th>
-                    {/* <th>Last Login</th> */}
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {users.map((u) => (
-                    <tr key={u.id}>
-                      <td>{u.fullname}</td>
-                      <td>{u.email}</td>
-                      <td>{u.created_at || "-"}</td>
-                      {/* <td>{u.created_at || "-"}</td> */}
-                      <td>
-                        <button
-                          className="action-icon view"
-                          onClick={() => handleViewClick(u)}
-                        >
-                          <FaEye />
-                        </button>
-                        <button
-                          className="action-icon delete"
-                          onClick={() => handleDeleteClick(u)}
-                        >
-                          <AiOutlineDelete />
-                        </button>
-                        <button
-                          className="action-icon edit"
-                          onClick={() => handleEditClick(u)}
-                        >
-                          <MdEdit />
-                        </button>
-                      </td>
+                <table className="user-details-table">
+                  <thead>
+                    <tr>
+                      <th>Full Name</th>
+                      <th>Email</th>
+                      <th>Registered At</th>
+                      <th>Action</th>
+                      <th>View Response</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {users.map((u) => (
+                      <tr key={u.id}>
+                        <td>{u.fullname}</td>
+                        <td>{u.email}</td>
+                        <td>{u.created_at || "-"}</td>
+
+                        <td>
+                          <button className="action-icon view" onClick={() => handleViewClick(u)}>
+                            <FaEye />
+                          </button>
+                          <button className="action-icon delete" onClick={() => handleDeleteClick(u)}>
+                            <AiOutlineDelete />
+                          </button>
+                          <button className="action-icon edit" onClick={() => handleEditClick(u)}>
+                            <MdEdit />
+                          </button>
+                        </td>
+
+                        <td>
+                          <button
+                            className="action-icon view"
+                            onClick={() => handleViewResponse(u.id)}
+                          >
+                            <FaEye />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             )}
 
@@ -145,193 +164,44 @@ const ViewUsersPage = () => {
         </div>
       </div>
 
-      {/* View Modal */}
-      {showViewModal && selectedUser && (
-        <div
-          className="modal-overlay"
-          onClick={() => setShowViewModal(false)}
-        >
-          <div
-            className="modal-box view-form-box"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <h3>User Information</h3>
-            <form className="view-user-form">
-              <div className="form-group">
-                <label>Full Name</label>
-                <input type="text" value={selectedUser.fullname} readOnly />
+    {showResponseModal && responseData && (
+  <div className="modal-overlay" onClick={() => setShowResponseModal(false)}>
+    <div className="modal-box large-modal" onClick={(e) => e.stopPropagation()}>
+
+      <h3>User Response</h3>
+
+      <p><strong>Name:</strong> {responseData?.user?.name || "N/A"}</p>
+      <p><strong>Email:</strong> {responseData?.user?.email || "N/A"}</p>
+
+      <hr />
+
+      {responseData?.categories?.length > 0 ? (
+        responseData.categories.map((cat) => (
+          <div key={cat.category_id} className="category-block">
+            <h4>{cat.category_name}</h4>
+
+            {cat.questions?.map((q) => (
+              <div key={q.question_id} className="question-item">
+                <p><strong>Q:</strong> {q.question_text}</p>
+                <p><strong>Selected:</strong> {q.user_selected}</p>
+                <hr />
               </div>
-              <div className="form-group">
-                <label>Email Address</label>
-                <input type="email" value={selectedUser.email} readOnly />
-              </div>
-              <div className="form-group">
-                <label>Registered At</label>
-                <input
-                  type="text"
-                  value={selectedUser.created_at || "-"}
-                  readOnly
-                />
-              </div>
-              {/* <div className="form-group">
-                <label>Last Login</label>
-                <input
-                  type="text"
-                  value={selectedUser.created_at || "-"}
-                  readOnly
-                />
-              </div> */}
-              <div className="modal-buttons">
-                <button
-                  type="button"
-                  className="confirm-btn"
-                  onClick={() => setShowViewModal(false)}
-                >
-                  Close
-                </button>
-              </div>
-            </form>
+            ))}
           </div>
-        </div>
+        ))
+      ) : (
+        <p>No response found for this user.</p>
       )}
 
-      {/* Delete Modal */}
-      {showDeleteModal && userToDelete && (
-        <div
-          className="modal-overlay"
-          onClick={() => setShowDeleteModal(false)}
-        >
-          <div className="modal-box" onClick={(e) => e.stopPropagation()}>
-            <h3>Confirm Delete</h3>
-            <p className="delete-par">
-              Are you sure you want to delete{" "}
-              <strong>{userToDelete.fullname}</strong>?
-            </p>
-            <div className="modal-buttons">
-              <button
-                className="confirm-btn"
-                onClick={async () => {
-                  try {
-                    const res = await axios.post(
-                      "http://localhost:5000/api/deleteUser",
-                      { id: userToDelete.id }   // send id in body
-                    );
+      <div className="modal-buttons">
+        <button className="confirm-btn" onClick={() => setShowResponseModal(false)}>
+          Close
+        </button>
+      </div>
 
-                    Swal.fire({
-                      icon: "success",
-                      title: "Deleted",
-                      text: res.data.message || "User deleted successfully",
-                      timer: 2000,
-                      showConfirmButton: false,
-                    });
-
-                    // update local state → remove from table
-                    setUsers(users.filter((u) => u.id !== userToDelete.id));
-
-                    setShowDeleteModal(false);
-                  } catch (err) {
-                    console.error("Delete error:", err);
-                    Swal.fire({
-                      icon: "error",
-                      title: "Error",
-                      text: err.response?.data?.message || "Failed to delete user",
-                    });
-                  }
-                }}
-              >
-                Delete
-              </button>
-              <button
-                className="cancel-btn"
-                onClick={() => setShowDeleteModal(false)}
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Edit Modal */}
-      {showEditModal && userToEdit && (
-        <div className="modal-overlay" onClick={() => setShowEditModal(false)}>
-          <div className="modal-box" onClick={(e) => e.stopPropagation()}>
-            <h3>Edit User</h3>
-            <form className="edit-user-form">
-              <div className="form-group">
-                <label>Full Name</label>
-                <input
-                  type="text"
-                  value={userToEdit.fullname}
-                  onChange={(e) =>
-                    setUserToEdit({ ...userToEdit, fullname: e.target.value })
-                  }
-                />
-              </div>
-              <div className="form-group">
-                <label>Email Address</label>
-                <input
-                  type="email"
-                  value={userToEdit.email}
-                  onChange={(e) =>
-                    setUserToEdit({ ...userToEdit, email: e.target.value })
-                  }
-                />
-              </div>
-              <div className="modal-buttons">
-                <button
-                  className="submit-btn"
-                  onClick={async (e) => {
-                    e.preventDefault();
-                    try {
-                      const res = await axios.post(
-                        "http://localhost:5000/api/editUser",
-                        {
-                          id: userToEdit.id,
-                          fullname: userToEdit.fullname,
-                          email: userToEdit.email,
-                        }
-                      );
-                      Swal.fire({
-                        icon: "success",
-                        title: "Success",
-                        text: res.data.message || "User updated successfully",
-                        timer: 2000,
-                        showConfirmButton: false,
-                      });
-                      // update local state so table shows changes
-                      setUsers(
-                        users.map((u) =>
-                          u.id === userToEdit.id ? { ...u, ...userToEdit } : u
-                        )
-                      );
-                      setShowEditModal(false);
-                    } catch (err) {
-                      console.error("Update error:", err);
-                      Swal.fire({
-                        icon: "error",
-                        title: "Error",
-                        text: err.response?.data?.message || "Failed to update user",
-                      });
-                    }
-                  }}
-                >
-                  Update
-                </button>
-                <button
-                  className="cancel-btn"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setShowEditModal(false);
-                  }}
-                >
-                  Cancel
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
+    </div>
+  </div>
+)}
     </div>
   );
 };

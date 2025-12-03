@@ -422,3 +422,18 @@ p.delete-par {
   }
 
 }
+.large-modal {
+  width: 700px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.category-block {
+  margin-bottom: 20px;
+}
+
+.question-item {
+  background: #f8f8f8;
+  padding: 10px;
+  border-radius: 6px;
+}
