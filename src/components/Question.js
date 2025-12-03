@@ -209,7 +209,7 @@ const Question = () => {
                     objectFit: "cover",
                     marginTop: "20px"
                   }}>
-                    <source src="/assets/0_Student_Girl_3840x2160.mp4" type="video/mp4" />
+                    <source src="/assets/video.mp4" type="video/mp4" />
                     Your browser does not support HTML video.
                   </video>
 
