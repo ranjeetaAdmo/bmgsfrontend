@@ -11,12 +11,11 @@ const Header = ({ toggleSidebar }) => {
   const toggleUserPopup = () => {
     setShowUserPopup(prev => !prev);
   };
-
-  const navigate = useNavigate();
-
-  const handleLogout = async () => {
-    try {
-      await axios.post("http://localhost:5000/api/logout", {}, { withCredentials: true });
+ 
+ const navigate = useNavigate();
+ const handleLogout = async () => {
+  try {
+    await axios.post("http://localhost:5000/api/logout", {}, { withCredentials: true });
 
       localStorage.removeItem("user");
 

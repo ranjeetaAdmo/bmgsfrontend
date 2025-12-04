@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/me", {
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/me`, {
           withCredentials: true, // send cookie
         });
         setUser(res.data.user);

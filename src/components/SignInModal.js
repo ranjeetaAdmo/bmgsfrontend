@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { IoClose } from 'react-icons/io5'; 
 
 const SignInModal = ({ onClose }) => {
+  const apiUrl = process.env.REACT_APP_API_URL;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -21,7 +22,7 @@ const SignInModal = ({ onClose }) => {
   const handleSignUpClick = async (e) => {
     e.preventDefault();
     try {
-    const res = await axios.post('http://localhost:5000/api/login',
+    const res = await axios.post(`${apiUrl}/login`,
         { email, password },
         { withCredentials: true }
       );
@@ -48,7 +49,7 @@ const SignInModal = ({ onClose }) => {
   e.preventDefault();
   setForgotMsg("");
   try {
-    const res = await axios.post("http://localhost:5000/api/forgetpassword", {
+    const res = await axios.post(`${apiUrl}/forgetpassword`, {
       email: forgotEmail
     });
     setForgotMsg(res.data.message);
