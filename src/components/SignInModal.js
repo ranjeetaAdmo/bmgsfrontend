@@ -27,6 +27,10 @@ const SignInModal = ({ onClose }) => {
       );
       setMessage("Login successful!");
       setUser(res.data.user);
+      console.log('token', res.data.user.token);
+      
+      localStorage.setItem('token', res.data.user.token);
+
       if (res.data.user.role === 'admin') {
         navigate('/dashboard');
         return;

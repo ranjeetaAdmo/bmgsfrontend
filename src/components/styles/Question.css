@@ -205,7 +205,7 @@ label.form-check-label {
 
 .get-started-button {
     width: 180px;
-    height: 55px;
+    height: 50px;
     border-radius: 10px;
     background: #008080;
     font-size: 18px;
@@ -216,9 +216,14 @@ label.form-check-label {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: auto;
 }
 
+.Started-button.my-4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
 video {
     height: 500px;
 }

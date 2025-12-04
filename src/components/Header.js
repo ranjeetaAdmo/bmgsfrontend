@@ -38,12 +38,13 @@ const Header = () => {
         </div>
 
         <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
-         <li><a href="/" >HOME</a></li>
-  <li><a href="/#about">ABOUT US</a></li>
-  <li><a href="/#servicesPage">SERVICES</a></li>
-  <li><a href="/#LeanIntroSection">METHODOLOGY</a></li>
-  <li><a href="/#Resourcepage">RESOURCES</a></li>
-  <li><a href="/#contact">CONTACT US</a></li>
+          <li><a href="/" >HOME</a></li>
+          <li><a href="/#about">ABOUT US</a></li>
+          <li><a href="/#servicesPage">SERVICES</a></li>
+          <li><a href="/#LeanIntroSection">METHODOLOGY</a></li>
+          <li><a href="/#Resourcepage">RESOURCES</a></li>
+          <li><a href="/#contact">CONTACT US</a></li>
+
           {/* Mobile buttons */}
           <li className="mobile-buttons">
             <button
