@@ -4,7 +4,7 @@ import Footer from './Footer';
 import './styles/Question.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-import Swal from 'sweetalert2'; 
+import Swal from 'sweetalert2';
 const Question = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [categories, setCategories] = useState([]);
@@ -97,7 +97,7 @@ const Question = () => {
       });
       const data = await res.json();
       if (data.success) {
-         Swal.fire({
+        Swal.fire({
           icon: 'success',
           title: 'Success!',
           text: 'Responses saved successfully!',
@@ -105,7 +105,7 @@ const Question = () => {
         });
         // Optionally, redirect or show a success message
       } else {
-              Swal.fire({
+        Swal.fire({
           icon: 'error',
           title: 'Oops...',
           text: data.message || 'Failed to save responses',
@@ -223,6 +223,16 @@ const Question = () => {
                   <button type="button" className="next-button" onClick={goToNextStep}>
                     Next
                   </button>
+                  {/* If last step → show Submit */}
+                  {stepIndex === questions.length && (
+                    <button
+                      type="button"
+                      className="next-button"
+                      onClick={handleSubmitResponses}
+                    >
+                      Submit Responses
+                    </button>
+                  )}
                 </div>
               </>
             )}
@@ -244,7 +254,7 @@ const Question = () => {
                     objectFit: "cover",
                     marginTop: "20px"
                   }}>
-                    {/* <source src="/assets/video.mp4" type="video/mp4" /> */}
+                    <source src="/assets/video.mp4" type="video/mp4" />
                     Your browser does not support HTML video.
                   </video>
 
