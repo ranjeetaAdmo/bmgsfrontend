@@ -11,9 +11,9 @@ const Question = () => {
   const [stepIndex, setStepIndex] = useState(0);
   const [allQuestions, setAllQuestions] = useState([]);
   const [selectedOptions, setSelectedOptions] = useState({});
-
+  
   useEffect(() => {
-    fetch("http://localhost:5000/api/categories", {
+    fetch(`${process.env.REACT_APP_API_URL}/categories`, {
       method: "GET",
       credentials: "include",
     })
@@ -40,7 +40,7 @@ const Question = () => {
   }, []);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/getQuestions', {
+    fetch(`${process.env.REACT_APP_API_URL}/getQuestions`, {
       method: "GET",
       credentials: "include",   // <-- REQUIRED to send cookies
     })
@@ -89,7 +89,7 @@ const Question = () => {
     }));
 
     try {
-      const res = await fetch('http://localhost:5000/api/saveResponse', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/saveResponse`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ responses }),

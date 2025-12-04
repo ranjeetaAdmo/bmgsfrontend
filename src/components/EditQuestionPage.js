@@ -21,7 +21,7 @@ const EditQuestionPage = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/categories");
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/categories`);
         setCategories(res.data); // assuming API returns an array
       } catch (err) {
         console.error("Error fetching categories:", err);
@@ -34,7 +34,7 @@ const EditQuestionPage = () => {
   useEffect(() => {
     const fetchQuestion = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/getQuestionById/${index}`, {
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/getQuestionById/${index}`, {
           withCredentials: true,
         });
         const q = res.data;
@@ -94,7 +94,7 @@ const EditQuestionPage = () => {
       };
 
       const res = await axios.post(
-        "http://localhost:5000/api/editQuestion",
+        `${process.env.REACT_APP_API_URL}/editQuestion`,
         updatedQuestion,
         { withCredentials: true }
       );

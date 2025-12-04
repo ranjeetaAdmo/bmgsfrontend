@@ -253,7 +253,7 @@ const ViewUsersPage = () => {
         const token = localStorage.getItem("token");
         console.log("token----", token);
 
-        const res = await axios.get("http://localhost:5000/api/users", {
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/users`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -310,7 +310,7 @@ const ViewUsersPage = () => {
     try {
       setLoadingResponse(true);
       const token = localStorage.getItem('token'); // Use token here too
-      const res = await axios.get(`http://localhost:5000/api/userResponses/${userId}`, {
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/userResponses/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

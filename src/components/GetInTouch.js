@@ -22,7 +22,7 @@ const GetInTouch = () => {
   useEffect(() => {
     const fetchContacts = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/contacts", {
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/contacts`, {
           withCredentials: true,
         });
         setContacts(res.data);
@@ -161,7 +161,7 @@ const GetInTouch = () => {
                 className="confirm-btn"
                 onClick={async () => {
                   try {
-                    await axios.post("http://localhost:5000/api/delete-contact", {
+                    await axios.post(`${process.env.REACT_APP_API_URL}/delete-contact`, {
                       id: contactToDelete.id,
                     });
 
