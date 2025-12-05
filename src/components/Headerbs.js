@@ -15,7 +15,7 @@ const Header = ({ toggleSidebar }) => {
  const navigate = useNavigate();
  const handleLogout = async () => {
   try {
-    await axios.post("http://localhost:5000/api/logout", {}, { withCredentials: true });
+    await axios.post(`${process.env.REACT_APP_API_URL}/logout`, {}, { withCredentials: true });
 
       localStorage.removeItem("user");
 

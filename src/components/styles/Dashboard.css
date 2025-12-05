@@ -21,7 +21,7 @@ body {
     top: 0;
     height: 60px;
     background: #ffffff;
-    width: calc(88% - 58px);
+    width: calc(88% - 56px);
     /* margin-left: 12px; */
     display: flex;
     align-items: center;
@@ -34,6 +34,7 @@ ease;
 .main-content.collapsed .headers {
   width: calc(100% - 70px);
   margin-left: 0px;
+  height:50px;
 }
 
 
@@ -46,7 +47,7 @@ ease;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #12263b;
+  /* background: #12263b; */
   padding: 15px;
 }
 .logo {
@@ -54,7 +55,12 @@ ease;
   font-size: 22px;
   font-weight: bold;
 }
-
+.sidebar.collapsed li.menu-link {
+    justify-content: center;
+}
+.sidebar.collapsed .sidebar-header {
+    justify-content: center;
+}
 .toggle-btn {
   cursor: pointer;
   font-size: 20px;
@@ -104,7 +110,7 @@ svg.icon.menu-icon {
 .sidebar {
   width: 220px;
   height: 100vh;
-  background: #0e1d34;
+    background: #008080;
   color: white;
   position: fixed;
   top: 0;
@@ -164,7 +170,7 @@ svg.icon.menu-icon {
   margin-left: 50px;
 }
 .main-content {
-  margin-left: 202px;
+  margin-left: 200px;
   transition: all 0.3s ease;
   padding: 20px;
 }
