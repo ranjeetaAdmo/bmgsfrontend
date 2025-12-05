@@ -1,6 +1,6 @@
 /* Layout wrapper */
 .main-layout {
-  display: flex;
+  /* display: flex; */
   height: 100vh;
 }
 
@@ -10,12 +10,12 @@
 }
 
 /* Content beside sidebar */
-.main-content {
+/* .main-content {
   flex: 1;
   display: flex;
   flex-direction: column;
   background-color: #f4f6f9;
-}
+} */
 
 /* Top header */
 .header {

@@ -3,12 +3,13 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import {
   FaTachometerAlt,
   FaUsers,
+  FaBars,
   FaQuestionCircle,
   FaListAlt
 } from 'react-icons/fa';
 import './styles/Dashboard.css';
 
-const Sidebar = ({ isCollapsed }) => {
+const Sidebar = ({ isCollapsed, toggleSidebar }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -19,6 +20,12 @@ const Sidebar = ({ isCollapsed }) => {
 
   return (
     <div className={`sidebar ${isCollapsed ? 'collapsed' : 'expanded'}`}>
+        {/* Logo & Hamburger*/}
+      <div className="sidebar-header">
+        {!isCollapsed && <h2 className="logo">BGMS</h2>}
+        <FaBars className="toggle-btn" onClick={toggleSidebar} />
+      </div>
+
       <ul className="menu-list">
         <li
           className={`menu-link${isActive('/dashboard') ? ' active' : ''}`}

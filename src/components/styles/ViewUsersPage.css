@@ -273,6 +273,19 @@ h2 {
   opacity: 0.8;
 }
 
+.user-details-header h2 {
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.view-user-form .form-group textarea {
+    width: 100%;
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: #f9f9f9;
+    color: #333;
+    border: 1px solid #ccc;
+}
 .modal-overlay {
   position: fixed;
   top: 0;

@@ -102,9 +102,8 @@ const AddQuestionPage = () => {
 
   return (
     <div className="app-container d-flex">
-       <Sidebar isCollapsed={isCollapsed} />
-
-      <div className="main-content flex-grow-1">
+        <Sidebar isCollapsed={isCollapsed} toggleSidebar={toggleSidebar} />
+           <div className={`main-content ${isCollapsed ? "collapsed" : ""}  flex-grow-1`}>
           <Header toggleSidebar={toggleSidebar} />
         <div className="container addquestion">
           <div className="d-flex align-items-center mb-3 addtop">

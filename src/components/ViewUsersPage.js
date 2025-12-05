@@ -9,32 +9,32 @@ import { AiOutlineDelete } from "react-icons/ai";
 import Header from "./Headerbs";
 import { FaPlus, FaEye } from "react-icons/fa";
 import Swal from "sweetalert2";
- 
+
 const ViewUsersPage = () => {
   const navigate = useNavigate();
   // const auth = useContext(AuthContext);
- 
+
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 10;
- 
+
   const [users, setUsers] = useState([]);
   const [loadingUsers, setLoadingUsers] = useState(true);
- 
+
   const [showViewModal, setShowViewModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [userToDelete, setUserToDelete] = useState(null);
   const [showEditModal, setShowEditModal] = useState(false);
   const [userToEdit, setUserToEdit] = useState(null);
- 
+
   const [showResponseModal, setShowResponseModal] = useState(false);
   const [responseData, setResponseData] = useState(null);
   const [loadingResponse, setLoadingResponse] = useState(false);
- 
+
   const [isCollapsed, setIsCollapsed] = useState(false);
   const toggleSidebar = () => setIsCollapsed(prev => !prev);
- 
- 
+
+
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
   const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
@@ -44,14 +44,14 @@ const ViewUsersPage = () => {
       try {
         const token = localStorage.getItem("token");
         console.log("token----", token);
- 
+
         const res = await axios.get(`${process.env.REACT_APP_API_URL}/users`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
           withCredentials: true,
         });
- 
+
         if (res.data.success) {
           setUsers(res.data.data);
         } else {
@@ -72,32 +72,32 @@ const ViewUsersPage = () => {
         setLoadingUsers(false);
       }
     };
- 
+
     fetchUsers();
   }, []);
- 
+
   // if (!auth) return <p>AuthContext not available</p>;
   // const { user, loading } = auth;
- 
+
   // if (loading) return <p>Loading...</p>;
   // if (!user) return <Navigate to="/" />;
   // if (user.role !== "admin") return <Navigate to="/question" />;
- 
+
   const handleViewClick = (u) => {
     setSelectedUser(u);
     setShowViewModal(true);
   };
- 
+
   const handleDeleteClick = (u) => {
     setUserToDelete(u);
     setShowDeleteModal(true);
   };
- 
+
   const handleEditClick = (u) => {
     setUserToEdit(u);
     setShowEditModal(true);
   };
- 
+
   // fetch user response
   const handleViewResponse = async (userId) => {
     try {
@@ -122,15 +122,15 @@ const ViewUsersPage = () => {
       setLoadingResponse(false);
     }
   };
- 
+
   return (
     <div className="dashboard-container">
-      <Sidebar isCollapsed={isCollapsed} />
- 
-      <div className="dashboard-body">
-        <Header toggleSidebar={toggleSidebar} />
- 
-        <div className="main-content">
+      <Sidebar isCollapsed={isCollapsed} toggleSidebar={toggleSidebar} />
+
+      <div className={`dashboard-body ${isCollapsed ? "collapsed" : ""}`}>
+
+        <div className={`main-content ${isCollapsed ? "collapsed" : ""}`}>
+          <Header toggleSidebar={toggleSidebar} />
           <div className="user-details-container">
             <div className="user-details-header">
               <h2>User Details</h2>
@@ -138,7 +138,7 @@ const ViewUsersPage = () => {
                 <FaPlus /> Add User
               </button>
             </div>
- 
+
             {loadingUsers ? (
               <p>Loading users...</p>
             ) : (
@@ -181,7 +181,7 @@ const ViewUsersPage = () => {
                 </table>
               </div>
             )}
- 
+
             <div className="pagination">
               <button
                 disabled={currentPage === 1}
@@ -189,9 +189,9 @@ const ViewUsersPage = () => {
               >
                 &laquo; Prev
               </button>
- 
+
               <span>Page {currentPage} of {totalPages}</span>
- 
+
               <button
                 disabled={currentPage === totalPages}
                 onClick={() => setCurrentPage(prev => prev + 1)}
@@ -202,7 +202,7 @@ const ViewUsersPage = () => {
           </div>
         </div>
       </div>
- 
+
       {/* View Modal */}
       {showViewModal && selectedUser && (
         <div
@@ -252,7 +252,7 @@ const ViewUsersPage = () => {
           </div>
         </div>
       )}
- 
+
       {/* Delete Modal */}
       {showDeleteModal && userToDelete && (
         <div
@@ -277,7 +277,7 @@ const ViewUsersPage = () => {
                         withCredentials: true,
                       }
                     );
- 
+
                     Swal.fire({
                       icon: "success",
                       title: "Deleted",
@@ -285,10 +285,10 @@ const ViewUsersPage = () => {
                       timer: 2000,
                       showConfirmButton: false,
                     });
- 
+
                     // update local state → remove from table
                     setUsers(users.filter((u) => u.id !== userToDelete.id));
- 
+
                     setShowDeleteModal(false);
                   } catch (err) {
                     console.error("Delete error:", err);
@@ -312,7 +312,7 @@ const ViewUsersPage = () => {
           </div>
         </div>
       )}
- 
+
       {/* Edit Modal */}
       {showEditModal && userToEdit && (
         <div className="modal-overlay" onClick={() => setShowEditModal(false)}>
@@ -396,7 +396,7 @@ const ViewUsersPage = () => {
           </div>
         </div>
       )}
- 
+
       {showResponseModal && responseData && (
         <div className="modal-overlay" onClick={() => setShowResponseModal(false)}>
           <div className="modal-box large-modal" onClick={(e) => e.stopPropagation()}>
@@ -431,5 +431,5 @@ const ViewUsersPage = () => {
     </div>
   );
 };
- 
+
 export default ViewUsersPage;

@@ -199,9 +199,10 @@ const CategoryPage = () => {
 
   return (
     <div className="main-layout">
-      <Sidebar isCollapsed={isCollapsed} />
-      <div className="main-content">
-        <Header toggleSidebar={toggleSidebar} />
+   <Sidebar isCollapsed={isCollapsed} toggleSidebar={toggleSidebar} />
+    
+       <div className={`main-content ${isCollapsed ? "collapsed" : ""}`}>
+          <Header toggleSidebar={toggleSidebar} />
         <div className="category-container">
           <div className="top-bar">
             <h2>Category Details</h2>

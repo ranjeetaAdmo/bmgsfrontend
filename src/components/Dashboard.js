@@ -24,8 +24,8 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-      <Sidebar isCollapsed={isCollapsed} />
-      <div className={`main-content ${isCollapsed ? 'collapsed' : ''}`}>
+           <Sidebar isCollapsed={isCollapsed} toggleSidebar={toggleSidebar} />
+ <div className={`main-content ${isCollapsed ? 'collapsed' : ''}`}>
         <Header toggleSidebar={toggleSidebar} />
         <div className="cards-container">
           <StatsCard title="Total Users" value="1,245" icon="FaUsers" />

@@ -29,10 +29,10 @@ const Header = ({ toggleSidebar }) => {
 
   return (
     <div className="headers">
-      <div className="left-section">
+      {/* <div className="left-section">
         <h3>BGMS</h3>
         <FaBars className="icon menu-icon" onClick={toggleSidebar} />
-      </div>
+      </div> */}
 
       <div className="right-section">
     

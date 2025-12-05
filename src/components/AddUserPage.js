@@ -54,8 +54,7 @@ const AddUserPage = () => {
 
   return (
     <div className="dashboard-container">
-      <Sidebar isCollapsed={isCollapsed} />
-
+     <Sidebar isCollapsed={isCollapsed} toggleSidebar={toggleSidebar} />
       <div className={`main-content ${isCollapsed ? 'collapsed' : ''}`}>
         <Header toggleSidebar={toggleSidebar} />
 

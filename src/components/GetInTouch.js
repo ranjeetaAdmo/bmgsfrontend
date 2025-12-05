@@ -19,6 +19,10 @@ const GetInTouch = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const toggleSidebar = () => setIsCollapsed((prev) => !prev);
 
+  // ⭐ Pagination State
+  const [currentPage, setCurrentPage] = useState(1);
+  const contactsPerPage = 5;
+
   useEffect(() => {
     const fetchContacts = async () => {
       try {
@@ -45,14 +49,29 @@ const GetInTouch = () => {
     setShowDeleteModal(true);
   };
 
+  // ⭐ Pagination Logic
+  const indexOfLast = currentPage * contactsPerPage;
+  const indexOfFirst = indexOfLast - contactsPerPage;
+  const currentContacts = contacts.slice(indexOfFirst, indexOfLast);
+
+  const totalPages = Math.ceil(contacts.length / contactsPerPage);
+
+  const goToNextPage = () => {
+    if (currentPage < totalPages) setCurrentPage((prev) => prev + 1);
+  };
+
+  const goToPrevPage = () => {
+    if (currentPage > 1) setCurrentPage((prev) => prev - 1);
+  };
+
   return (
     <div className="dashboard-container">
-      <Sidebar isCollapsed={isCollapsed} />
+      <Sidebar isCollapsed={isCollapsed} toggleSidebar={toggleSidebar} />
 
-      <div className="dashboard-body">
-        <Header toggleSidebar={toggleSidebar} />
+      <div className={`dashboard-body ${isCollapsed ? "collapsed" : ""}`}>
 
-        <div className="main-content">
+        <div className={`main-content ${isCollapsed ? "collapsed" : ""}`}>
+          <Header toggleSidebar={toggleSidebar} />
           <div className="user-details-container">
             <div className="user-details-header">
               <h2>Get In Touch Messages</h2>
@@ -74,7 +93,7 @@ const GetInTouch = () => {
                   </thead>
 
                   <tbody>
-                    {contacts.map((c) => (
+                    {currentContacts.map((c) => (
                       <tr key={c.id}>
                         <td>{c.name}</td>
                         <td>{c.email}</td>
@@ -102,10 +121,17 @@ const GetInTouch = () => {
               </div>
             )}
 
+            {/* ⭐ Updated Pagination Working */}
             <div className="pagination">
-              <button disabled>&laquo; Prev</button>
-              <span>Page 1 of 1</span>
-              <button disabled>Next &raquo;</button>
+              <button disabled={currentPage === 1} onClick={goToPrevPage}>
+                &laquo; Prev
+              </button>
+
+              <span>Page {currentPage} of {totalPages}</span>
+
+              <button disabled={currentPage === totalPages} onClick={goToNextPage}>
+                Next &raquo;
+              </button>
             </div>
           </div>
         </div>
@@ -175,9 +201,7 @@ const GetInTouch = () => {
                       showConfirmButton: false,
                     });
 
-                    setContacts(
-                      contacts.filter((c) => c.id !== contactToDelete.id)
-                    );
+                    setContacts(contacts.filter((c) => c.id !== contactToDelete.id));
 
                     setShowDeleteModal(false);
                   } catch (err) {

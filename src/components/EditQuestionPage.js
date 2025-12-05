@@ -21,7 +21,7 @@ const EditQuestionPage = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}/categories`,{
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/categories`, {
           withCredentials: true,
         });
         setCategories(res.data); // assuming API returns an array
@@ -114,8 +114,8 @@ const EditQuestionPage = () => {
 
   return (
     <div className="app-container d-flex">
-      <Sidebar isCollapsed={isCollapsed} />
-      <div className="main-content flex-grow-1">
+      <Sidebar isCollapsed={isCollapsed} toggleSidebar={toggleSidebar} />
+      <div className={`main-content ${isCollapsed ? "collapsed" : ""}  flex-grow-1`}>
         <Header toggleSidebar={toggleSidebar} />
         <div className="container addquestion">
           <div className="d-flex align-items-center mb-3 addtop">
