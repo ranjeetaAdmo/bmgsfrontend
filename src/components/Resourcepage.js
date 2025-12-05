@@ -31,6 +31,8 @@ const handleResouceClick = () => {
     e.preventDefault();
     try {
       const res = await fetch(`${process.env.REACT_APP_API_URL}/contact`, {
+        withCredentials: true,
+        credentials: 'include',
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

@@ -21,7 +21,9 @@ const EditQuestionPage = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}/categories`);
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/categories`,{
+          withCredentials: true,
+        });
         setCategories(res.data); // assuming API returns an array
       } catch (err) {
         console.error("Error fetching categories:", err);

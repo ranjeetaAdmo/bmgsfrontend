@@ -163,6 +163,8 @@ const GetInTouch = () => {
                   try {
                     await axios.post(`${process.env.REACT_APP_API_URL}/delete-contact`, {
                       id: contactToDelete.id,
+                    }, {
+                      withCredentials: true,
                     });
 
                     Swal.fire({
