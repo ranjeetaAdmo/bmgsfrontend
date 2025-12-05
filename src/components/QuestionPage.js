@@ -31,8 +31,12 @@ const QuestionPage = () => {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
+        const token = localStorage.getItem('token');
         const res = await axios.get(`${process.env.REACT_APP_API_URL}/getQuestions`, {
           withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         });
 
         const normalized = res.data.map(q => ({
@@ -82,9 +86,15 @@ const QuestionPage = () => {
     if (!selectedQuestionId) return;
 
     try {
+      const token = localStorage.getItem('token');
       await axios.post(`${process.env.REACT_APP_API_URL}/deletequestion`,
         { id: selectedQuestionId },
-        { withCredentials: true }
+        { 
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
 
       setQuestions(prev => prev.filter(q => q.id !== selectedQuestionId));

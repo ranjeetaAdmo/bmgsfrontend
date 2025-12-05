@@ -26,10 +26,16 @@ const AddUserPage = () => {
     }
 
     try {
+      const token = localStorage.getItem('token');
       const res = await axios.post(
         `${process.env.REACT_APP_API_URL}/register`,
         { fullname, email, password },
-        { withCredentials: true }
+        { 
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       console.log(res.data);
          Swal.fire({

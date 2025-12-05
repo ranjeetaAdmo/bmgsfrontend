@@ -2,7 +2,8 @@
 import './styles/SignUpModal.css';
 import { IoClose } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState ,useContext} from 'react';
+import { AuthContext } from "../context/AuthContext";
 import axios from 'axios';
 
 const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
@@ -12,7 +13,7 @@ const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
-
+  const { setUser } = useContext(AuthContext);
   const handleSignUpClick = async () => {
     if (!fullname || !email || !password || !confirmPassword) {
       return setMessage("All fields are required");
@@ -27,6 +28,8 @@ const SignUpModal = ({ onClose, onSwitchToSignIn }) => {
         { fullname, email, password },
         { withCredentials: true }
       );
+      setUser(res.data.user);
+      localStorage.setItem('token', res.data.user.token);
       console.log(res.data);
       navigate('/question'); // redirect after successful signup
     } catch (err) {

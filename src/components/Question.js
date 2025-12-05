@@ -13,9 +13,13 @@ const Question = () => {
   const [selectedOptions, setSelectedOptions] = useState({});
   
   useEffect(() => {
+    const token = localStorage.getItem('token');
     fetch(`${process.env.REACT_APP_API_URL}/categories`, {
       method: "GET",
       credentials: "include",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     })
       .then(res => res.json())
       .then(data => {
@@ -40,9 +44,13 @@ const Question = () => {
   }, []);
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
     fetch(`${process.env.REACT_APP_API_URL}/getQuestions`, {
       method: "GET",
       credentials: "include",   // <-- REQUIRED to send cookies
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     })
       .then(res => res.json())
       .then(data => {
@@ -89,9 +97,13 @@ const Question = () => {
     }));
 
     try {
+      const token = localStorage.getItem('token');
       const res = await fetch(`${process.env.REACT_APP_API_URL}/saveResponse`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify({ responses }),
         credentials: 'include',
       });

@@ -30,11 +30,15 @@ const handleResouceClick = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const token = localStorage.getItem('token');
       const res = await fetch(`${process.env.REACT_APP_API_URL}/contact`, {
         withCredentials: true,
         credentials: 'include',
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify(formData)
       });
       const data = await res.json();

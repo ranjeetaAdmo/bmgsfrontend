@@ -26,8 +26,12 @@ const GetInTouch = () => {
   useEffect(() => {
     const fetchContacts = async () => {
       try {
+        const token = localStorage.getItem('token');
         const res = await axios.get(`${process.env.REACT_APP_API_URL}/contacts`, {
           withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         });
         setContacts(res.data);
       } catch (err) {
@@ -187,12 +191,11 @@ const GetInTouch = () => {
                 className="confirm-btn"
                 onClick={async () => {
                   try {
-                    await axios.post(`${process.env.REACT_APP_API_URL}/delete-contact`, {
-                      id: contactToDelete.id,
-                    }, {
+                    const token = localStorage.getItem('token');
+                   await axios.delete(`${process.env.REACT_APP_API_URL}/delete-contact/${contactToDelete.id}`, {
                       withCredentials: true,
+                      headers: { Authorization: `Bearer ${token}` }
                     });
-
                     Swal.fire({
                       icon: "success",
                       title: "Deleted",

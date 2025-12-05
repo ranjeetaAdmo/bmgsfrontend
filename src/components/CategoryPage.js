@@ -55,8 +55,12 @@ const CategoryPage = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
+        const token = localStorage.getItem('token');
         const res = await axios.get(`${process.env.REACT_APP_API_URL}/categories`, {
           withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         });
 
         const normalized = res.data.map(cat => ({
@@ -106,10 +110,16 @@ const CategoryPage = () => {
     }
 
     try {
+      const token = localStorage.getItem('token');
       const res = await axios.post(
         `${process.env.REACT_APP_API_URL}/saveCategory`,
         { category_name: newCategory.trim() },
-        { withCredentials: true }
+        { 
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
 
       // Add the newly created category to local state using normalized structure
@@ -145,10 +155,16 @@ const CategoryPage = () => {
     if (!category) return;
 
     try {
+      const token = localStorage.getItem('token');
       const res = await axios.post(
         `${process.env.REACT_APP_API_URL}/editCategory`,
         { id: category.id, category_name: editName.trim() },
-        { withCredentials: true }
+        { 
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
 
       Swal.fire('Success', res.data?.message || "Category updated!", 'success');
@@ -175,10 +191,16 @@ const CategoryPage = () => {
     if (!category) return;
 
     try {
+      const token = localStorage.getItem('token');
       const res = await axios.post(
         `${process.env.REACT_APP_API_URL}/deleteCategory`,
         { id: category.id },
-        { withCredentials: true }
+        { 
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
 
       if (res.data?.message) {

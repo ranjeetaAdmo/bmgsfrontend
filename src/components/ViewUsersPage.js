@@ -43,7 +43,6 @@ const ViewUsersPage = () => {
     const fetchUsers = async () => {
       try {
         const token = localStorage.getItem("token");
-        console.log("token----", token);
 
         const res = await axios.get(`${process.env.REACT_APP_API_URL}/users`, {
           headers: {
@@ -270,11 +269,15 @@ const ViewUsersPage = () => {
                 className="confirm-btn"
                 onClick={async () => {
                   try {
+                    const token = localStorage.getItem('token');
                     const res = await axios.post(
                       `${process.env.REACT_APP_API_URL}/deleteUser`,
                       { id: userToDelete.id },
                       {
                         withCredentials: true,
+                        headers: {
+                          Authorization: `Bearer ${token}`,
+                        },
                       }
                     );
 
@@ -345,6 +348,7 @@ const ViewUsersPage = () => {
                   onClick={async (e) => {
                     e.preventDefault();
                     try {
+                      const token = localStorage.getItem('token');
                       const res = await axios.post(
                         `${process.env.REACT_APP_API_URL}/editUser`,
                         {
@@ -354,6 +358,9 @@ const ViewUsersPage = () => {
                         },
                         {
                           withCredentials: true,
+                          headers: {
+                            Authorization: `Bearer ${token}`,
+                          },
                         }
                       );
                       Swal.fire({

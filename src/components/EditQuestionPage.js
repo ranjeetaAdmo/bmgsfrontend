@@ -21,8 +21,12 @@ const EditQuestionPage = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
+        const token = localStorage.getItem('token');
         const res = await axios.get(`${process.env.REACT_APP_API_URL}/categories`, {
           withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         });
         setCategories(res.data); // assuming API returns an array
       } catch (err) {
@@ -36,8 +40,12 @@ const EditQuestionPage = () => {
   useEffect(() => {
     const fetchQuestion = async () => {
       try {
+        const token = localStorage.getItem('token');
         const res = await axios.get(`${process.env.REACT_APP_API_URL}/getQuestionById/${index}`, {
           withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         });
         const q = res.data;
 
@@ -94,11 +102,16 @@ const EditQuestionPage = () => {
         options: formData.options,
         correctAnswerIndex: formData.correctAnswerIndex,
       };
-
+      const token = localStorage.getItem('token');
       const res = await axios.post(
         `${process.env.REACT_APP_API_URL}/editQuestion`,
         updatedQuestion,
-        { withCredentials: true }
+        { 
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
 
       console.log(res.data);

@@ -8,11 +8,15 @@ function ForgotPassword() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMsg('');
+    const token = localStorage.getItem('token');
     const res = await fetch(`${process.env.REACT_APP_API_URL}/forgetpassword`, {
       withCredentials: true,
       credentials: 'include',
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify({ email })
     });
     const data = await res.json();

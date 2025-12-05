@@ -27,9 +27,13 @@ const AddQuestionPage = () => {
 
    useEffect(() => {
     const fetchCategories = async () => {
+      const token = localStorage.getItem('token');  
       try {
         const res = await axios.get(`${process.env.REACT_APP_API_URL}/categories`,{
           withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         });
         setCategories(res.data); // assuming API returns an array
       } catch (err) {
@@ -65,8 +69,12 @@ const AddQuestionPage = () => {
 
   try {
     // Send data to backend
+    const token = localStorage.getItem('token');
     const res = await axios.post(`${process.env.REACT_APP_API_URL}/addQuestions`, finalData,{
       withCredentials: true,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
 
     if (res.status === 200 || res.status === 201) {
