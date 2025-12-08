@@ -4,12 +4,11 @@ import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 import './styles/QuestionPage.css';
 import { Modal } from 'react-bootstrap';
-import { FaEye } from 'react-icons/fa';
+import { FaEye, FaPlus } from 'react-icons/fa';
 import { MdEdit } from "react-icons/md";
 import { AiOutlineDelete } from "react-icons/ai";
 import Sidebar from './Sidebar';
 import Header from './Headerbs';
-import { FaPlus } from 'react-icons/fa';
 
 const QuestionPage = () => {
   const navigate = useNavigate();
@@ -17,16 +16,43 @@ const QuestionPage = () => {
   const [loadingUsers, setLoadingUsers] = useState(true);
 
   const [currentStep, setCurrentStep] = useState(1);
-  const questionsPerPage = 5;  // ⭐Pagination limit
+  const questionsPerPage = 5;
 
   const [questions, setQuestions] = useState([]);
+  
+  // ⭐ Delete Modal
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedQuestionId, setSelectedQuestionId] = useState(null);
 
+  // ⭐ View Modal
+  const [showViewModal, setShowViewModal] = useState(false);
+  const [selectedQuestion, setSelectedQuestion] = useState(null);
+
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
   const toggleSidebar = () => {
-    setIsCollapsed(prev => !prev);
+    if (!isMobile) {
+      setIsCollapsed(prev => !prev);
+    }
   };
+
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      if (window.innerWidth <= 768) {
+        setIsMobile(true);
+        setIsCollapsed(true);
+      } else {
+        setIsMobile(false);
+      }
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -66,8 +92,7 @@ const QuestionPage = () => {
   if (!user) return <Navigate to="/" />;
   if (user.role !== "admin") return <Navigate to="/question" />;
 
-
-  // ⭐ Pagination logic
+  // ⭐ Pagination
   const indexOfLastQuestion = currentStep * questionsPerPage;
   const indexOfFirstQuestion = indexOfLastQuestion - questionsPerPage;
   const currentQuestions = questions.slice(indexOfFirstQuestion, indexOfLastQuestion);
@@ -82,6 +107,7 @@ const QuestionPage = () => {
     if (currentStep > 1) setCurrentStep(prev => prev - 1);
   };
 
+  // ⭐ Delete
   const handleDelete = async () => {
     if (!selectedQuestionId) return;
 
@@ -112,20 +138,25 @@ const QuestionPage = () => {
     setShowDeleteModal(true);
   };
 
-
-  const handleEdit = (id) => {
-    navigate(`/edit-question/${id}`);
+  // ⭐ View Modal Logic
+  const handleView = (id) => {
+    const found = questions.find(q => q.id === id);
+    setSelectedQuestion(found);
+    setShowViewModal(true);
   };
 
-  const handleView = (id) => {
-    navigate(`/view-question/${id}`);
+  // ⭐ Edit
+  const handleEdit = (id) => {
+    navigate(`/edit-question/${id}`);
   };
 
   return (
     <div className="app-container d-flex">
       <Sidebar isCollapsed={isCollapsed} toggleSidebar={toggleSidebar} />
+
       <div className={`main-content ${isCollapsed ? "collapsed" : ""}  flex-grow-1`}>
         <Header toggleSidebar={toggleSidebar} />
+
         <div className="container question-page">
           <div className="d-flex justify-content-between align-items-center mb-3">
             <h3 className='Questionheading'>Questions Details</h3>
@@ -164,10 +195,9 @@ const QuestionPage = () => {
                 </tr>
               ))}
             </tbody>
-
           </table>
 
-          {/* Delete Modal */}
+          {/* ⭐ Delete Modal */}
           <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
             <Modal.Header closeButton>
               <Modal.Title>Confirm Delete</Modal.Title>
@@ -179,7 +209,46 @@ const QuestionPage = () => {
             </Modal.Footer>
           </Modal>
 
-          {/* ⭐ Pagination UI */}
+          {/* ⭐ View Modal */}
+        {/* ⭐ View Modal (Input Styled Professional UI) */}
+<Modal show={showViewModal} onHide={() => setShowViewModal(false)} centered>
+  <Modal.Header closeButton>
+    <Modal.Title className="modal-title-custom">
+      Question Details
+    </Modal.Title>
+  </Modal.Header>
+
+  <Modal.Body>
+    {selectedQuestion && (
+      <div className="view-details-form">
+
+        <label>Question</label>
+        <input type="text" value={selectedQuestion.text} readOnly className="view-input" />
+
+        <label>Category</label>
+        <input type="text" value={selectedQuestion.category} readOnly className="view-input" />
+
+        <label>Created Date</label>
+        <input 
+          type="text" 
+          value={selectedQuestion.createdAt ? selectedQuestion.createdAt.slice(0,10) : "-"} 
+          readOnly 
+          className="view-input" 
+        />
+
+      </div>
+    )}
+  </Modal.Body>
+
+  <Modal.Footer>
+    <button className="cancel-btn" onClick={() => setShowViewModal(false)}>
+      Close
+    </button>
+  </Modal.Footer>
+</Modal>
+
+
+          {/* ⭐ Pagination */}
           <div className="pagination">
             <button disabled={currentStep === 1} onClick={goToPreviousStep}>
               &laquo; Prev

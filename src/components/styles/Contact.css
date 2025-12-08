@@ -208,43 +208,38 @@ span.highlight {
 }
 
 @media (max-width: 480px) {
-
+.icon.web {
+    width: 24px;
+    height: 24px;
+}
   .contact-left h2:before {
     width: 110px;
     left: 33%;
   }
-
   .contact-box {
-
-    gap: 10px;
+    gap: 5px;
   }
-
   .icon.email {
 
-    width: 25px;
-    height: 25px;
+    width: 24px;
+    height: 24px;
   }
-
   .contact-detail p {
-
-    font-size: 14px;
+    font-size: 12px;
+    margin-left: 6px;
   }
-
   .contact-left h2 {
     font-size: 24px;
   }
-
   .contact-section {
     padding: 25px 0 0px;
   }
-
   .icon.youtube,
   .icon.instagram,
   .icon.facebook {
     width: 25px;
     height: 25px;
   }
-
   .footer-text {
     font-size: 15px;
   }

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import Sidebar from "./Sidebar";
+import { AuthContext } from "../context/AuthContext";
 import Header from "./Headerbs";
 import { FaEye } from "react-icons/fa";
 import { AiOutlineDelete } from "react-icons/ai";
@@ -17,7 +18,27 @@ const GetInTouch = () => {
   const [contactToDelete, setContactToDelete] = useState(null);
 
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const toggleSidebar = () => setIsCollapsed((prev) => !prev);
+    const toggleSidebar = () => {
+    if (!isMobile) {
+      setIsCollapsed(prev => !prev);
+    }
+  };
+
+      const [isMobile, setIsMobile] = useState(false);
+      const auth = useContext(AuthContext);
+      useEffect(() => {
+        const checkScreenSize = () => {
+          if (window.innerWidth <= 768) {
+            setIsMobile(true);
+            setIsCollapsed(true);
+          } else {
+            setIsMobile(false);
+          }
+        };
+        checkScreenSize();
+        window.addEventListener("resize", checkScreenSize);
+        return () => window.removeEventListener("resize", checkScreenSize);
+      }, []);
 
   // ⭐ Pagination State
   const [currentPage, setCurrentPage] = useState(1);

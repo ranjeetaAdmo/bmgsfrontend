@@ -230,7 +230,6 @@ button.edit-btn {
 }
 
 @media (max-width: 480px) {
-
   .table-responsive {
     width: 100%;
     max-height: 400px;
@@ -265,3 +264,39 @@ button.edit-btn {
     font-size: 16px;
 }
 }
+@media (min-width: 481px) and (max-width: 767px) {
+.top-bar h2 {
+    font-size: 18px;
+}
+.edit-btn, .delete-btn {
+    height: 24px;
+    width: 24px;
+    font-size: 13px;
+}
+.category-table th, .category-table td {
+    font-size: 12px;
+    padding: 3px;
+}
+button.edit-btn {
+    margin-right: 3px;
+}
+.modal-box h3 {
+    gap: 5px !important;
+    font-size: 18px !important;
+}
+.back-icon {
+    font-size: 15px;
+}
+}
+  @media (min-width: 768px) and (max-width: 1024px) {
+.top-bar h2 {
+    font-size: 19px;
+  }
+.add-user-btn {
+    padding: 8px 10px;
+    font-size: 13px;
+}
+.category-table th, .category-table td {
+    padding: 10px;
+}
+  }

@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useContext, useEffect } from "react";
 import './styles/QuestionPage.css';
 import { Button, Form, Row, Col } from 'react-bootstrap';
 import Sidebar from './Sidebar';
+import { AuthContext } from "../context/AuthContext";
 import Header from './Headerbs';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -72,11 +73,27 @@ const EditQuestionPage = () => {
 
 
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const toggleSidebar = () => {
-    setIsCollapsed(prev => !prev);
+       const toggleSidebar = () => {
+    if (!isMobile) {
+      setIsCollapsed(prev => !prev);
+    }
   };
 
-
+      const [isMobile, setIsMobile] = useState(false);    
+      useEffect(() => {
+        const checkScreenSize = () => {
+          if (window.innerWidth <= 768) {
+            setIsMobile(true);
+            setIsCollapsed(true);
+          } else {
+            setIsMobile(false);
+          }
+        };
+        checkScreenSize(); 
+        window.addEventListener("resize", checkScreenSize);
+        return () => window.removeEventListener("resize", checkScreenSize);
+      }, []);
+      
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };

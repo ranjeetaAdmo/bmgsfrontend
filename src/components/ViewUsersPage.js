@@ -32,7 +32,41 @@ const ViewUsersPage = () => {
   const [loadingResponse, setLoadingResponse] = useState(false);
 
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const toggleSidebar = () => setIsCollapsed(prev => !prev);
+  const toggleSidebar = () => {
+    if (!isMobile) {
+      setIsCollapsed(prev => !prev);
+    }
+  };
+
+
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  const auth = useContext(AuthContext);
+
+
+
+  useEffect(() => {
+
+    const checkScreenSize = () => {
+
+
+      if (window.innerWidth <= 768) {
+        setIsMobile(true);
+
+
+        setIsCollapsed(true);
+      } else {
+        setIsMobile(false);
+      }
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
+
 
 
   const indexOfLastUser = currentPage * usersPerPage;
@@ -96,6 +130,7 @@ const ViewUsersPage = () => {
     setUserToEdit(u);
     setShowEditModal(true);
   };
+
 
   // fetch user response
   const handleViewResponse = async (userId) => {

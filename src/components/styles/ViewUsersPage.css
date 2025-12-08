@@ -392,7 +392,7 @@ p.delete-par {
 
   .user-details-container {
     padding: 15px;
-    margin-top: 0px;
+    margin-top: 60px;
   }
 
   .add-user-btn {
@@ -400,13 +400,16 @@ p.delete-par {
     font-size: 12px;
   }
 
+.user-details-header h2 {
+    font-size: 17px;
+}
   .heading-with-back h2 {
     font-size: 15px;
   }
 
   .user-details-table th {
     padding: 2px;
-    font-size: 12px;
+    font-size: 11px;
   }
 
   .action-icon {
@@ -418,8 +421,6 @@ p.delete-par {
     padding: 3px;
     font-size: 12px;
   }
-
-
   .pagination button {
     font-size: 12px;
     margin: 0 5px;
@@ -434,7 +435,6 @@ p.delete-par {
     gap: 5px;
   }
 
-}
 .large-modal {
   width: 700px;
   max-height: 80vh;
@@ -449,4 +449,48 @@ p.delete-par {
   background: #f8f8f8;
   padding: 10px;
   border-radius: 6px;
+}
+}
+@media (min-width: 481px) and (max-width: 767px) {
+.user-details-header h2 {
+    font-size: 21px;
+}
+.add-user-btn {
+    font-size: 13px;
+}
+.action-icon {
+    margin-right: 0;
+    font-size: 15px;
+}
+.user-details-table th, .user-details-table td {
+    padding: 5px;
+    font-size: 12px;
+}
+}
+  @media (min-width: 768px) and (max-width: 1024px) {
+.user-details-header h2 {
+    font-size: 21px;
+}
+.user-details-table th, .user-details-table td {
+    padding: 5px;
+    font-size: 12px;
+}
+.action-icon {
+    width: 26px;
+    height: 26px;
+    padding: 0px !important;
+    font-size: 14px;
+
+    margin-right: 4px;
+}
+.form-title {
+    gap: 8px;
+    font-size: 18px;
+}
+.modal-box h3 {
+    font-size: 18px  !important;
+}
+.modal-box {
+    padding: 20px !important;
+}
 }

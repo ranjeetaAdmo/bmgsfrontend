@@ -1,8 +1,9 @@
-import React, { useState , useEffect } from 'react';
+import React, { useState , useContext, useEffect } from 'react';
 import './styles/QuestionPage.css';
 import { Button, Form, Row, Col } from 'react-bootstrap';
 import Sidebar from './Sidebar';
 import Header from './Headerbs';
+import { AuthContext } from "../context/AuthContext";
 import { FaArrowLeft } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
@@ -15,8 +16,29 @@ const AddQuestionPage = () => {
     const [categories, setCategories] = useState([]);
 
     const toggleSidebar = () => {
-    setIsCollapsed(prev => !prev);
+    if (!isMobile) {
+      setIsCollapsed(prev => !prev);
+    }
   };
+      const [isMobile, setIsMobile] = useState(false);
+    
+      const auth = useContext(AuthContext);
+    
+      useEffect(() => {
+    
+        const checkScreenSize = () => {
+          if (window.innerWidth <= 768) {
+            setIsMobile(true);
+            setIsCollapsed(true);
+          } else {
+            setIsMobile(false);
+          }
+        };
+        checkScreenSize();
+        window.addEventListener("resize", checkScreenSize);
+    
+        return () => window.removeEventListener("resize", checkScreenSize);
+      }, []);
 
   const [formData, setFormData] = useState({
     category: '',
@@ -154,7 +176,7 @@ const AddQuestionPage = () => {
             <Form.Label className="mb-2">Options</Form.Label>
             <Row>
               {[0, 1].map((index) => (
-                <Col md={6} key={index} className="mb-2">
+                <Col md={6} key={index} className="mb-3">
                   <Form.Control
                     type="text"
                     value={formData.options[index]}
@@ -167,7 +189,7 @@ const AddQuestionPage = () => {
             </Row>
             <Row>
               {[2, 3].map((index) => (
-                <Col md={6} key={index} className="mb-2">
+                <Col md={6} key={index} className="mb-3">
                   <Form.Control
                     type="text"
                     value={formData.options[index]}

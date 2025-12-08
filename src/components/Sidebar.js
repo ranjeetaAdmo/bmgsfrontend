@@ -7,6 +7,7 @@ import {
   FaQuestionCircle,
   FaListAlt
 } from 'react-icons/fa';
+import { MdTouchApp } from "react-icons/md";
 import './styles/Dashboard.css';
 
 const Sidebar = ({ isCollapsed, toggleSidebar }) => {
@@ -68,7 +69,7 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
           onClick={() => navigate('/get-in-touch')}
           style={{ cursor: 'pointer' }}
         >
-          <FaQuestionCircle />
+          <MdTouchApp />
           {!isCollapsed && <span>Get in Touch</span>}
         </li>
 

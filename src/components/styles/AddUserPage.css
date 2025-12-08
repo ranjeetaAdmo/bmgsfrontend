@@ -98,7 +98,6 @@
 }
 
 @media (max-width: 480px) {
-
   .add-user-wrapper {
     margin-top: 30px;
   }
@@ -116,4 +115,18 @@
   .back-icon {
     font-size: 16px !important;
   }
+.submit-btn {
+    padding: 0px 15px;
+}
+}
+@media (min-width: 481px) and (max-width: 767px) {
+.add-user-card {
+    padding: 20px 20px;
+}
+.form-title {
+     font-size: 19px;
+}
+.add-user-wrapper {
+    margin-top: 35px;
+}
 }

@@ -262,8 +262,9 @@ li.menu-link span {
 
 
 .cards-container {
-    display: flex;
+    display: grid;
     gap: 11px;
+    grid-template-columns: repeat(4, 1fr);
     padding: 20px;
     flex-wrap: wrap;
     justify-content: center;
@@ -420,6 +421,10 @@ input:focus-visible {
 }
 
 @media (max-width: 480px) {
+  
+.cards-container {
+    grid-template-columns: repeat(1, 1fr);
+}
 .cards {
     min-width: 220px;
     max-width: 220px;
@@ -439,6 +444,32 @@ input:focus-visible {
 }
 }
 @media (min-width: 481px) and (max-width: 767px) {
-
-  
+  .sidebar-toggle-btn {
+    display: none !important;
+  }
+  .cards-container {
+        grid-template-columns: repeat(2, 1fr);
+        margin-top:45px;
+    }
+.cards h4 {
+    font-size: 18px;
+}
+.cards {
+    min-width: 180px;
+    max-width: 180px;
+}
+.cards p {
+    font-size: 14px;
+}
+.card-icon {
+    font-size: 22px;
+}
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+.cards-container {
+    grid-template-columns: repeat(2, 1fr);
+}
+.cards {
+    max-width: 100%;
+}
 }

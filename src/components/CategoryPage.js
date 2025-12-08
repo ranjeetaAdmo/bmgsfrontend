@@ -13,17 +13,38 @@ import Swal from 'sweetalert2';
 
 const CategoryPage = () => {
   const navigate = useNavigate();
-  const auth = useContext(AuthContext);
   const [loadingUsers, setLoadingUsers] = useState(true);
 
   const getCurrentTime = () => new Date().toLocaleString();
 
 
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const toggleSidebar = () => {
-    setIsCollapsed(prev => !prev);
+   const toggleSidebar = () => {
+    if (!isMobile) {
+      setIsCollapsed(prev => !prev);
+    }
   };
 
+    const [isMobile, setIsMobile] = useState(false);
+  
+    const auth = useContext(AuthContext);
+    useEffect(() => {
+  
+      const checkScreenSize = () => {
+        if (window.innerWidth <= 768) {
+          setIsMobile(true);
+          setIsCollapsed(true);
+        } else {
+          setIsMobile(false);
+        }
+      };
+      checkScreenSize();
+      window.addEventListener("resize", checkScreenSize);
+  
+      return () => window.removeEventListener("resize", checkScreenSize);
+    }, []);
+
+  
   // const initialCategories = [
   //   { name: 'Methodologies', createdAt: getCurrentTime() },
   //   { name: 'Leadership', createdAt: getCurrentTime() },
@@ -48,6 +69,7 @@ const CategoryPage = () => {
     cat.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  
   const indexOfLast = currentPage * categoriesPerPage;
   const indexOfFirst = indexOfLast - categoriesPerPage;
   const currentCategories = filteredCategories.slice(indexOfFirst, indexOfLast);
