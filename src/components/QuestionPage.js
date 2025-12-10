@@ -19,7 +19,7 @@ const QuestionPage = () => {
   const questionsPerPage = 5;
 
   const [questions, setQuestions] = useState([]);
-  
+
   // ⭐ Delete Modal
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedQuestionId, setSelectedQuestionId] = useState(null);
@@ -115,7 +115,7 @@ const QuestionPage = () => {
       const token = localStorage.getItem('token');
       await axios.post(`${process.env.REACT_APP_API_URL}/deletequestion`,
         { id: selectedQuestionId },
-        { 
+        {
           withCredentials: true,
           headers: {
             Authorization: `Bearer ${token}`,
@@ -210,12 +210,9 @@ const QuestionPage = () => {
           </Modal>
 
           {/* ⭐ View Modal */}
-        {/* ⭐ View Modal (Input Styled Professional UI) */}
-<Modal show={showViewModal} onHide={() => setShowViewModal(false)} centered>
+        <Modal show={showViewModal} onHide={() => setShowViewModal(false)} centered size="md">
   <Modal.Header closeButton>
-    <Modal.Title className="modal-title-custom">
-      Question Details
-    </Modal.Title>
+    <Modal.Title className="modal-title-custom">Question Details</Modal.Title>
   </Modal.Header>
 
   <Modal.Body>
@@ -229,23 +226,38 @@ const QuestionPage = () => {
         <input type="text" value={selectedQuestion.category} readOnly className="view-input" />
 
         <label>Created Date</label>
-        <input 
-          type="text" 
-          value={selectedQuestion.createdAt ? selectedQuestion.createdAt.slice(0,10) : "-"} 
-          readOnly 
-          className="view-input" 
+        <input
+          type="text"
+          value={selectedQuestion.createdAt ? selectedQuestion.createdAt.slice(0, 10) : "-"}
+          readOnly
+          className="view-input"
         />
 
+        {/* ===== Options Section ===== */}
+        {selectedQuestion.options && selectedQuestion.options.length > 0 && (
+          <>
+            <label>Options</label>
+            <ul className="options-list">
+              {selectedQuestion.options.map((opt, i) => (
+                <li key={i} className={`option-item ${opt.isCorrect ? "correct" : ""}`}>
+                  {opt.text}
+                  {opt.isCorrect && <span className="correct-badge">✔ Correct</span>}
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
       </div>
     )}
   </Modal.Body>
 
   <Modal.Footer>
-    <button className="cancel-btn" onClick={() => setShowViewModal(false)}>
+    <button className="confirm-btn" onClick={() => setShowViewModal(false)}>
       Close
     </button>
   </Modal.Footer>
 </Modal>
+
 
 
           {/* ⭐ Pagination */}

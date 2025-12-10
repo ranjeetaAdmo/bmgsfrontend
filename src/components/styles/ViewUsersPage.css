@@ -338,6 +338,7 @@ button.action-icon.edit {
   background-color: #008080;
   color: white;
   padding: 8px 14px;
+  float: right;
   border: none;
   border-radius: 4px;
   cursor: pointer;
