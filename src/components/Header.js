@@ -28,7 +28,9 @@ const Header = () => {
   return (
     <>
       <header className="header" ref={menuRef}>
-        <div className="logo">LOGO</div>
+       <div className="logo">
+            <img src="/assets/bmgs logo.png" alt="Company Logo" />
+       </div>
 
         {/* Hamburger icon */}
         <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>

@@ -23,7 +23,12 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
     <div className={`sidebar ${isCollapsed ? 'collapsed' : 'expanded'}`}>
         {/* Logo & Hamburger*/}
       <div className="sidebar-header">
-        {!isCollapsed && <h2 className="logo">BMGS</h2>}
+    {!isCollapsed && (
+  <h2 className="logo">
+    <img src="/assets/bmgs logo.png" alt="logo" />
+  </h2>
+)}
+
         <FaBars className="toggle-btn" onClick={toggleSidebar} />
       </div>
 

@@ -175,6 +175,11 @@ body {
   display: none;
 }
 
+.logo img {
+    width: 80px;
+    height: auto;
+    object-fit: cover;
+}
 /* Mobile view */
 @media (max-width: 480px) {
   .nav-buttons {
@@ -183,7 +188,7 @@ body {
 
   .nav-links {
     position: absolute;
-    top: 60px;
+    top: 78px;
     left: 0;
     background: white;
     flex-direction: column;
@@ -239,7 +244,7 @@ body {
   }
   .nav-links {
     position: absolute;
-    top: 60px;
+    top: 79px;
     left: 0;
     background: white;
     flex-direction: column;
